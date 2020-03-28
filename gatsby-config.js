@@ -173,6 +173,7 @@ module.exports = {
           }
         ]
       }
-    }
+    },
+    "gatsby-plugin-antd"
   ]
 };
