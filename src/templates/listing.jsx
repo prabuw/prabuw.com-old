@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby";
 import { Layout } from "../components/Layout";
 import PostListing from "../components/PostListing/PostListing";
 import SEO from "../components/SEO/SEO";
-import config from "../../data/SiteConfig";
+import config from "../../site-config";
 import "./listing.css";
 
 class Listing extends React.Component {
