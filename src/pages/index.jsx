@@ -12,7 +12,7 @@ const HomePage = ({ data }) => {
     <SiteLayout>
       <Helmet title={`${config.siteTitle}`} />
       <div>
-        I am Prabu Weerasinghe , a software engineer based in London, UK.
+        I am Prabu Weerasinghe, a software engineer based in London, UK.
       </div>
       <div>
         I am interested in software, product management and engineering
