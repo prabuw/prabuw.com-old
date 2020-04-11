@@ -1,0 +1,30 @@
+@import url("https://meyerweb.com/eric/tools/css/reset/reset.css");
+@import url("https://rsms.me/inter/inter.css");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700");
+
+html {
+  background-color: white;
+}
+
+body {
+  font-size: 16px;
+  color: black;
+  font-family: "Inter", -system-ui, system-ui, sans-serif;
+  font-size-adjust: none;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1.5;
+  margin: 48px auto;
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+
+  -moz-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  -ms-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  -o-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  -webkit-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+}

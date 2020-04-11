@@ -41,6 +41,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
+
+  createPage({
+    path: "/",
+    component: path.resolve("src/pages/home.jsx")
+  });
+
   const postPage = path.resolve("src/templates/post.jsx");
   const tagPage = path.resolve("src/templates/tag.jsx");
   const categoryPage = path.resolve("src/templates/category.jsx");
@@ -101,7 +107,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   [...Array(pageCount)].forEach((_val, pageNum) => {
     createPage({
-      path: pageNum === 0 ? `/` : `/${pageNum + 1}/`,
+      path: pageNum === 0 ? `/blog/` : `/blog/${pageNum + 1}/`,
       component: listingPage,
       context: {
         limit: postsPerPage,
