@@ -13,8 +13,8 @@ class SEO extends Component {
       ? postMeta.description
       : postNode.excerpt;
 
-    const postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
-    const blogURL = urljoin(config.siteUrl, config.pathPrefix);
+    const postURL = urljoin(config.siteUrl, postPath);
+    const blogURL = urljoin(config.siteUrl);
 
     const schemaOrgJSONLD = [
       {
