@@ -1,12 +1,10 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { Link } from "gatsby";
-import _ from "lodash";
 import { Layout, Typography, Divider } from "antd";
 import { Tag } from "./Tag";
 import { SiteLayout } from "../SiteLayout";
 import Disqus from "../Disqus/Disqus";
-import SocialLinks from "../SocialLinks/SocialLinks";
+import { Share } from "./Share";
 import SEO from "../SEO/SEO";
 import config from "../../../site-config";
 import "./post.css";
@@ -31,9 +29,7 @@ export const Post = ({ slug, postNode }) => {
           <Tag key={tag} tag={tag} />
         ))}
         <Divider />
-        <div className="post-meta">
-          <SocialLinks postPath={slug} postNode={postNode} />
-        </div>
+        <Share postPath={slug} postNode={postNode} />
         <Disqus postNode={postNode} />
       </Layout.Content>
     </SiteLayout>
