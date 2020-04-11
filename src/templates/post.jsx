@@ -7,7 +7,6 @@ import Disqus from "../components/Disqus/Disqus";
 import PostTags from "../components/PostTags/PostTags";
 import SocialLinks from "../components/SocialLinks/SocialLinks";
 import SEO from "../components/SEO/SEO";
-import Footer from "../components/Footer/Footer";
 import config from "../../site-config";
 import "./post.css";
 
@@ -37,7 +36,6 @@ export default class PostTemplate extends React.Component {
             </div>
             <UserInfo config={config} />
             <Disqus postNode={postNode} />
-            <Footer config={config} />
           </div>
         </div>
       </SiteLayout>
