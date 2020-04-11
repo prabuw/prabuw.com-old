@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
-import { Layout } from "../components/Layout";
+import { SiteLayout } from "../components/SiteLayout";
 import UserInfo from "../components/UserInfo/UserInfo";
 import Disqus from "../components/Disqus/Disqus";
 import PostTags from "../components/PostTags/PostTags";
@@ -22,7 +22,7 @@ export default class PostTemplate extends React.Component {
     }
 
     return (
-      <Layout>
+      <SiteLayout>
         <div>
           <Helmet>
             <title>{`${post.title} | ${config.siteTitle}`}</title>
@@ -40,7 +40,7 @@ export default class PostTemplate extends React.Component {
             <Footer config={config} />
           </div>
         </div>
-      </Layout>
+      </SiteLayout>
     );
   }
 }
