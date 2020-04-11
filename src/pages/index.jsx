@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import Helmet from "react-helmet";
-import { Row, Col, Divider, List } from "antd";
+import { Row, Col, Divider, List, Empty } from "antd";
 import { SiteLayout } from "../components/SiteLayout";
 import config from "../../site-config";
 
@@ -20,7 +20,10 @@ const HomePage = ({ data }) => {
       </div>
       <Divider />
       {posts.length === 0 ? (
-        <div>None</div>
+        <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="No posts, yet."
+        />
       ) : (
         <List
           itemLayout="horizontal"
