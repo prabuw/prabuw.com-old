@@ -1,5 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
+import { Link } from "gatsby";
 import { Layout, Typography, Divider } from "antd";
 import { Tag } from "./Tag";
 import { SiteLayout } from "../SiteLayout";
@@ -20,7 +21,12 @@ export const Post = ({ slug, postNode }) => {
       <SEO postPath={slug} postNode={postNode} />
       <Layout.Content>
         <Typography.Title>{post.title}</Typography.Title>
-        <time dateTime={post.date}>{post.shortDate}</time>
+        <div>
+          <Link to={`/categories/${post.category}`}>
+            <Typography.Title level={4}>{post.category}</Typography.Title>
+          </Link>
+          <time dateTime={post.date}>{post.shortDate}</time>
+        </div>
         <Layout.Content className="markdown-body">
           <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
         </Layout.Content>
