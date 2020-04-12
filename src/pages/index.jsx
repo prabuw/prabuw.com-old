@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 import { Layout } from "../components/Layout";
-import { Container } from "../components/Container";
 import config from "../../site-config";
 import { PostFeedItem } from "../components/PostFeedItem";
 
@@ -12,7 +11,7 @@ const HomePage = ({ data }) => {
   return (
     <Layout>
       <Helmet title={`${config.siteTitle}`} />
-      <Container>
+      <>
         {postEdges.length === 0 ? (
           <>No posts, yet.</>
         ) : (
@@ -22,7 +21,7 @@ const HomePage = ({ data }) => {
             ))}
           </section>
         )}
-      </Container>
+      </>
     </Layout>
   );
 };
