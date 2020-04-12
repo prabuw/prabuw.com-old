@@ -6,21 +6,26 @@ import { Container } from "../components/Container";
 import config from "../../site-config";
 
 const HomePage = ({ data }) => {
-  const posts = data.allMarkdownRemark.edges;
+  const postEdges = data.allMarkdownRemark.edges;
 
   return (
     <Layout>
       <Helmet title={`${config.siteTitle}`} />
       <Container>
-        {posts.length === 0 ? (
+        {postEdges.length === 0 ? (
           <>No posts, yet.</>
         ) : (
           <section>
-            {posts.map(post => (
-              <Link to={post.node.fields.slug} className="flex flex-row mb-2">
-                <div className="flex-grow">{post.node.frontmatter.title}</div>
+            {postEdges.map(postEdge => (
+              <Link
+                to={postEdge.node.fields.slug}
+                className="flex flex-row mb-2"
+              >
+                <div className="flex-grow">
+                  {postEdge.node.frontmatter.title}
+                </div>
                 <div className="flex-grow-0">
-                  {post.node.frontmatter.shortDate}
+                  {postEdge.node.frontmatter.shortDate}
                 </div>
               </Link>
             ))}
