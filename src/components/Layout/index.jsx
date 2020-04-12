@@ -10,6 +10,13 @@ export const Layout = ({ children }) => (
       <meta name="description" content={config.siteDescription} />
       <html lang="en" />
     </Helmet>
+    <Container>
+      <nav>
+        <Link to="/" className="text-xl">
+          Prabu Weerasinghe
+        </Link>
+      </nav>
+    </Container>
     <main>{children}</main>
   </>
 );
