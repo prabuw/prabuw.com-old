@@ -1,49 +1,33 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import Helmet from "react-helmet";
-import { Row, Col, Divider, List, Empty } from "antd";
-import { SiteLayout } from "../components/SiteLayout";
+import { Layout } from "../components/Layout";
+import { Container } from "../components/Container";
 import config from "../../site-config";
 
 const HomePage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
 
   return (
-    <SiteLayout>
+    <Layout>
       <Helmet title={`${config.siteTitle}`} />
-      <div>
-        I am Prabu Weerasinghe, a software engineer based in London, UK.
-      </div>
-      <div>
-        I am interested in software, product management and engineering
-        management.
-      </div>
-      <Divider />
-      {posts.length === 0 ? (
-        <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description="No posts, yet."
-        />
-      ) : (
-        <List
-          itemLayout="horizontal"
-          size="small"
-          dataSource={posts}
-          renderItem={post => (
-            <List.Item>
-              <Link to={post.node.fields.slug} style={{ width: "100%" }}>
-                <Row>
-                  <Col span={8}>{post.node.frontmatter.title}</Col>
-                  <Col span={4} offset={4}>
-                    {post.node.frontmatter.shortDate}
-                  </Col>
-                </Row>
+      <Container>
+        {posts.length === 0 ? (
+          <>No posts, yet.</>
+        ) : (
+          <section>
+            {posts.map(post => (
+              <Link to={post.node.fields.slug} className="flex flex-row mb-2">
+                <div className="flex-grow">{post.node.frontmatter.title}</div>
+                <div className="flex-grow-0">
+                  {post.node.frontmatter.shortDate}
+                </div>
               </Link>
-            </List.Item>
-          )}
-        />
-      )}
-    </SiteLayout>
+            ))}
+          </section>
+        )}
+      </Container>
+    </Layout>
   );
 };
 

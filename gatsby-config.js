@@ -170,6 +170,6 @@ module.exports = {
         ]
       }
     },
-    "gatsby-plugin-antd"
+    "gatsby-plugin-postcss"
   ]
 };
