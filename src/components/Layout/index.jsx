@@ -7,17 +7,17 @@ import config from "../../../site-config";
 export const Layout = ({ children }) => (
   <>
     <Helmet>
-      <meta name="description" content={config.siteDescription} />
       <html lang="en" />
+      <meta name="description" content={config.siteDescription} />
     </Helmet>
-    <nav>
+    <nav className="pt-16">
       <Container>
-        <Link to="/" className="text-xl">
-          Prabu Weerasinghe
+        <Link to="/" className="font-bold">
+          <mark>Prabu Weerasinghe</mark>
         </Link>
       </Container>
     </nav>
-    <main>
+    <main className="py-8">
       <Container>{children}</Container>
     </main>
   </>
