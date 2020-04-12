@@ -1,9 +1,10 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 import { Layout } from "../components/Layout";
 import { Container } from "../components/Container";
 import config from "../../site-config";
+import { PostFeedItem } from "../components/PostFeedItem";
 
 const HomePage = ({ data }) => {
   const postEdges = data.allMarkdownRemark.edges;
@@ -17,17 +18,7 @@ const HomePage = ({ data }) => {
         ) : (
           <section>
             {postEdges.map(postEdge => (
-              <Link
-                to={postEdge.node.fields.slug}
-                className="flex flex-row mb-2"
-              >
-                <div className="flex-grow">
-                  {postEdge.node.frontmatter.title}
-                </div>
-                <div className="flex-grow-0">
-                  {postEdge.node.frontmatter.shortDate}
-                </div>
-              </Link>
+              <PostFeedItem postEdge={postEdge} />
             ))}
           </section>
         )}
