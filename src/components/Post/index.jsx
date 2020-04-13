@@ -26,7 +26,7 @@ export const Post = ({ slug, postNode }) => {
           url={urljoin(config.siteUrl, slug)}
           title={post.title}
         >
-          <span className="mr-3 text-gray-700 hover:text-blue-400">Share</span>
+          <span className="mr-3 text-gray-700 hover:text-black">Share</span>
         </TwitterShareButton>
       </div>
       {post.tags.map(tag => (
