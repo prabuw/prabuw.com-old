@@ -30,7 +30,7 @@ export const Post = ({ slug, postNode }) => {
         </TwitterShareButton>
       </div>
       {post.tags.map(tag => (
-        <Link className="mr-3 italic text-sm" to={`/tags/${_.kebabCase(tag)}`}>
+        <Link className="mr-3 text-sm" to={`/tags/${_.kebabCase(tag)}`}>
           {tag}
         </Link>
       ))}
