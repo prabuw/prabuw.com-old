@@ -12,8 +12,8 @@ export const Layout = ({ children }) => (
     </Helmet>
     <nav className="pt-16">
       <Container>
-        <Link to="/" className="font-bold">
-          <mark>Prabu Weerasinghe</mark>
+        <Link to="/">
+          <mark className="font-semibold p-2">Prabu Weerasinghe</mark>
         </Link>
       </Container>
     </nav>
