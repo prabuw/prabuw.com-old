@@ -3,8 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
 
 @import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
 
 /*
 ** Custom base styles
@@ -168,3 +166,6 @@ body {
   -webkit-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
   font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
 }
+
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
