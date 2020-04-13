@@ -1,12 +1,10 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { Link } from "gatsby";
-import { Tag } from "./Tag";
+import { TwitterShareButton } from "react-share";
+import urljoin from "url-join";
 import { Layout } from "../Layout";
-import Disqus from "../Disqus/Disqus";
-import { Share } from "./Share";
 import SEO from "../SEO/SEO";
-import { Divider } from "../Divider";
 import config from "../../../site-config";
 
 export const Post = ({ slug, postNode }) => {
@@ -18,24 +16,25 @@ export const Post = ({ slug, postNode }) => {
         <title>{`${post.title} | ${config.siteTitle}`}</title>
       </Helmet>
       <SEO postPath={slug} postNode={postNode} />
-      <div className="container">
-        <h1>{post.title}</h1>
-        <div>
-          <Link to={`/categories/${post.category}`}>
-            <h4>{post.category}</h4>
-          </Link>
-          <time dateTime={post.date}>{post.shortDate}</time>
-        </div>
-        <div className="container">
-          <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-        </div>
-        <Divider />
-        {post.tags.map(tag => (
-          <Tag key={tag} tag={tag} />
-        ))}
-        <Divider />
-        <Share postPath={slug} postNode={postNode} />
+      <h1>{post.title}</h1>
+      <div className="text-sm">
+        <time dateTime={post.date} className="mr-3 text-gray-500">
+          {post.shortDate}
+        </time>
+        <TwitterShareButton
+          url={urljoin(config.siteUrl, slug)}
+          title={post.title}
+        >
+          <span className="mr-3 text-gray-700 hover:text-blue-400">Share</span>
+        </TwitterShareButton>
       </div>
+      <Link className="category" to={`/categories/${post.category}`}>
+        {post.category}
+      </Link>
+      <div
+        className="mt-12"
+        dangerouslySetInnerHTML={{ __html: postNode.html }}
+      />
     </Layout>
   );
 };
