@@ -6,7 +6,7 @@ export const PostsByTagFeed = ({ tag, postEdges }) => {
   return (
     <Layout>
       <h2 className="mb-12">
-        Posts tagged as <span className="italic underline"> tag</span>
+        Posts tagged as <span className="italic underline">{tag}</span>
       </h2>
       <PostFeed postEdges={postEdges} />
     </Layout>
