@@ -8,7 +8,6 @@ import { Share } from "./Share";
 import SEO from "../SEO/SEO";
 import { Divider } from "../Divider";
 import config from "../../../site-config";
-import "./index.css";
 
 export const Post = ({ slug, postNode }) => {
   const post = postNode.frontmatter;
