@@ -1,6 +1,6 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { Post } from "../components/Post";
+import React from 'react';
+import { graphql } from 'gatsby';
+import { Post } from '../components/Post';
 
 const PostTemplate = ({ data, pageContext }) => {
   const { slug } = pageContext;

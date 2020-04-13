@@ -1,12 +1,12 @@
-import React from "react";
-import Helmet from "react-helmet";
-import _ from "lodash";
-import { Link } from "gatsby";
-import { TwitterShareButton } from "react-share";
-import urljoin from "url-join";
-import { Layout } from "../Layout";
-import SEO from "../SEO/SEO";
-import config from "../../../site-config";
+import React from 'react';
+import Helmet from 'react-helmet';
+import _ from 'lodash';
+import { Link } from 'gatsby';
+import { TwitterShareButton } from 'react-share';
+import urljoin from 'url-join';
+import { Layout } from '../Layout';
+import SEO from '../SEO/SEO';
+import config from '../../../site-config';
 
 export const Post = ({ slug, postNode }) => {
   const post = postNode.frontmatter;
@@ -22,10 +22,7 @@ export const Post = ({ slug, postNode }) => {
         <time dateTime={post.date} className="mr-3 text-gray-500">
           {post.shortDate}
         </time>
-        <TwitterShareButton
-          url={urljoin(config.siteUrl, slug)}
-          title={post.title}
-        >
+        <TwitterShareButton url={urljoin(config.siteUrl, slug)} title={post.title}>
           <span className="mr-3 text-gray-700 hover:text-black">Share</span>
         </TwitterShareButton>
       </div>
@@ -34,10 +31,7 @@ export const Post = ({ slug, postNode }) => {
           {tag}
         </Link>
       ))}
-      <article
-        className="mt-12"
-        dangerouslySetInnerHTML={{ __html: postNode.html }}
-      />
+      <article className="mt-12" dangerouslySetInnerHTML={{ __html: postNode.html }} />
     </Layout>
   );
 };

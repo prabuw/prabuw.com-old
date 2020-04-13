@@ -1,7 +1,7 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { Layout } from "../components/Layout";
-import config from "../../site-config";
+import React from 'react';
+import Helmet from 'react-helmet';
+import { Layout } from '../components/Layout';
+import config from '../../site-config';
 
 const AboutPage = () => {
   return (
@@ -12,10 +12,7 @@ const AboutPage = () => {
       </Helmet>
       <section>
         <p>I am a software engineer based in London, UK.</p>
-        <p>
-          I am interested in software, product strategy and engineering
-          management.
-        </p>
+        <p>I am interested in software, product strategy and engineering management.</p>
       </section>
     </Layout>
   );

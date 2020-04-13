@@ -1,10 +1,10 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { Link } from "gatsby";
-import { Container } from "../Container";
-import config from "../../../site-config";
+import React from 'react';
+import Helmet from 'react-helmet';
+import { Link } from 'gatsby';
+import { Container } from '../Container';
+import config from '../../../site-config';
 
-import "./styles.css";
+import './styles.css';
 
 export const Layout = ({ children }) => (
   <>
@@ -15,9 +15,7 @@ export const Layout = ({ children }) => (
     <nav className="pt-16">
       <Container className="flex">
         <Link to="/" className="brand">
-          <span className="font-semibold text-xl text-black">
-            Prabu Weerasinghe
-          </span>
+          <span className="font-semibold text-xl text-black">Prabu Weerasinghe</span>
         </Link>
         <div className="ml-auto nav-links">
           <Link to="/about">About me</Link>

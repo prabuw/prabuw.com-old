@@ -1,17 +1,15 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { graphql } from "gatsby";
-import { PostsByTagFeed } from "../components/PostsByTagFeed";
-import config from "../../site-config";
+import React from 'react';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import { PostsByTagFeed } from '../components/PostsByTagFeed';
+import config from '../../site-config';
 
 export const TagTemplate = ({ pageContext, data }) => {
   const postEdges = data.allMarkdownRemark.edges;
 
   return (
     <>
-      <Helmet
-        title={`Posts tagged as "${pageContext.tag}" | ${config.siteTitle}`}
-      />
+      <Helmet title={`Posts tagged as "${pageContext.tag}" | ${config.siteTitle}`} />
       <PostsByTagFeed tag={pageContext.tag} postEdges={postEdges} />
     </>
   );

@@ -1,6 +1,6 @@
-import React from "react";
-import { Layout } from "../Layout";
-import { PostFeed } from "../PostFeed";
+import React from 'react';
+import { Layout } from '../Layout';
+import { PostFeed } from '../PostFeed';
 
 export const PostsByTagFeed = ({ tag, postEdges }) => {
   return (

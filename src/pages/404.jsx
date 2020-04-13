@@ -1,7 +1,7 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { Layout } from "../components/Layout";
-import config from "../../site-config";
+import React from 'react';
+import Helmet from 'react-helmet';
+import { Layout } from '../components/Layout';
+import config from '../../site-config';
 
 const Page404 = () => {
   return (
