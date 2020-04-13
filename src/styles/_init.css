@@ -2,10 +2,14 @@
 @import url("https://rsms.me/inter/inter.css");
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
 
-/* Tailwind imports */
 @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* custom base styles */
+/*
+** Custom base styles
+** These must come after `@import "tailwindcss/base";`
+*/
 
 h1,
 h2,
@@ -136,9 +140,6 @@ tt {
   font-family: "IBM Plex Mono", monospace !important;
   font-feature-settings: "ss02" 1, "zero" 1;
 }
-
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
 
 /* Custom site styles */
 
