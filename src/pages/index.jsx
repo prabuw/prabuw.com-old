@@ -1,7 +1,7 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import Helmet from "react-helmet";
-import { Container } from "../components/Container";
+import { Layout } from "../components/Layout";
 import { PostFeed } from "../components/PostFeed";
 import config from "../../site-config";
 
@@ -9,36 +9,26 @@ const HomePage = ({ data }) => {
   const postEdges = data.allMarkdownRemark.edges;
 
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>{config.siteTitle}</title>
         <meta name="description" content={config.siteDescription} />
       </Helmet>
-      <nav className="pt-16">
-        <Container>
-          <p>
-            I am{" "}
-            <Link to="/" className="font-bold">
-              <mark>Prabu Weerasinghe</mark>
-            </Link>
-            , a software engineer based in London, UK.
-          </p>
-          <p>
-            I am interested in software, product strategy and engineering
-            management.
-          </p>
-        </Container>
-      </nav>
+      <section>
+        <p>I am a software engineer based in London, UK.</p>
+        <p>
+          I am interested in software, product strategy and engineering
+          management.
+        </p>
+      </section>
       <main className="py-8">
-        <Container>
-          {postEdges.length === 0 ? (
-            <>No posts, yet.</>
-          ) : (
-            <PostFeed postEdges={postEdges} />
-          )}
-        </Container>
+        {postEdges.length === 0 ? (
+          <>No posts, yet.</>
+        ) : (
+          <PostFeed postEdges={postEdges} />
+        )}
       </main>
-    </>
+    </Layout>
   );
 };
 
