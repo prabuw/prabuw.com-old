@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import Helmet from "react-helmet";
 import { Container } from "../components/Container";
-import { PostFeedItem } from "../components/PostFeedItem";
+import { PostFeed } from "../components/PostFeed";
 import config from "../../site-config";
 
 const HomePage = ({ data }) => {
@@ -34,11 +34,7 @@ const HomePage = ({ data }) => {
           {postEdges.length === 0 ? (
             <>No posts, yet.</>
           ) : (
-            <section>
-              {postEdges.map(postEdge => (
-                <PostFeedItem postEdge={postEdge} />
-              ))}
-            </section>
+            <PostFeed postEdges={postEdges} />
           )}
         </Container>
       </main>
