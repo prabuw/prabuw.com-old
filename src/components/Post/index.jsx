@@ -28,9 +28,6 @@ export const Post = ({ slug, postNode }) => {
           <span className="mr-3 text-gray-700 hover:text-blue-400">Share</span>
         </TwitterShareButton>
       </div>
-      <Link className="category" to={`/categories/${post.category}`}>
-        {post.category}
-      </Link>
       <div
         className="mt-12"
         dangerouslySetInnerHTML={{ __html: postNode.html }}
