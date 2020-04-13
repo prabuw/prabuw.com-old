@@ -15,7 +15,7 @@ export const Layout = ({ children }) => (
     <nav className="pt-16">
       <Container className="flex">
         <Link to="/" className="brand">
-          <span className="font-semibold text-xl text-black">Prabu Weerasinghe</span>
+          <span className="font-semibold text-xl text-black px-2">Prabu Weerasinghe</span>
         </Link>
         <div className="ml-auto nav-links">
           <Link to="/about">About me</Link>
