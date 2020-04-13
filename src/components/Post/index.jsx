@@ -27,7 +27,7 @@ export const Post = ({ slug, postNode }) => {
           </Link>
           <time dateTime={post.date}>{post.shortDate}</time>
         </div>
-        <div className="container markdown-body">
+        <div className="container">
           <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
         </div>
         <Divider />

@@ -1,0 +1,169 @@
+/* Custom fonts */
+@import url("https://rsms.me/inter/inter.css");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+
+/* Tailwind imports */
+@import "tailwindcss/base";
+
+/* custom base styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-medium;
+}
+h1 {
+  @apply text-6xl;
+  @apply font-bold;
+}
+h2 {
+  @apply text-4xl;
+  @apply font-bold;
+}
+h3 {
+  @apply text-3xl;
+  @apply font-bold;
+}
+h4 {
+  @apply text-2xl;
+  @apply font-medium;
+}
+h5,
+h6 {
+  @apply text-xl;
+  @apply font-medium;
+}
+
+/* small screens */
+@media only screen and (max-device-width: 480px) {
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+  h4,
+  h5,
+  h6 {
+    @apply text-lg;
+  }
+}
+
+a[href] {
+  @apply no-underline;
+  color: rgba(3, 102, 214, 1);
+}
+a[href]:hover {
+  text-decoration: underline rgba(3, 102, 214, 0.6);
+}
+a[href^="#"]:hover {
+  text-decoration-style: dashed;
+}
+::selection {
+  background: rgb(250, 240, 20);
+  text-shadow: none;
+}
+
+a.img {
+  @apply border-none;
+  @apply bg-transparent;
+}
+
+h1 > a,
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a,
+h1 > a:hover,
+h2 > a:hover,
+h3 > a:hover,
+h4 > a:hover,
+h5 > a:hover,
+h6 > a:hover {
+  color: inherit !important;
+  background-color: transparent !important;
+}
+
+ol li {
+  @apply list-decimal;
+}
+ul li {
+  @apply list-disc;
+}
+li {
+  @apply ml-5;
+}
+
+blockquote {
+  @apply px-4;
+  @apply italic;
+  @apply font-serif;
+  @apply text-lg;
+  @apply my-4;
+  color: #345;
+  letter-spacing: 0.002em;
+}
+
+hr {
+  @apply my-6;
+  @apply border-gray-300;
+}
+
+table {
+  @apply p-2;
+}
+
+table td,
+table th {
+  @apply px-4;
+  @apply py-2;
+}
+
+table td {
+  @apply border;
+}
+
+pre,
+code,
+tt {
+  font-family: "IBM Plex Mono", monospace !important;
+  font-feature-settings: "ss02" 1, "zero" 1;
+}
+
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Custom site styles */
+
+html {
+  background-color: white;
+}
+
+body {
+  @apply text-base;
+  @apply text-black;
+  font-family: "Inter var", -system-ui, system-ui, sans-serif;
+  font-size-adjust: none;
+  @apply not-italic;
+  font-variant: normal;
+  @apply font-normal;
+  @apply leading-normal;
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+
+  -moz-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  -ms-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  -o-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  -webkit-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+}
