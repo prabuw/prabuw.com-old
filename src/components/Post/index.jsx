@@ -34,7 +34,7 @@ export const Post = ({ slug, postNode }) => {
           {tag}
         </Link>
       ))}
-      <div
+      <article
         className="mt-12"
         dangerouslySetInnerHTML={{ __html: postNode.html }}
       />
