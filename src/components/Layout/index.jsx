@@ -4,6 +4,8 @@ import { Link } from "gatsby";
 import { Container } from "../Container";
 import config from "../../../site-config";
 
+import "./styles.css";
+
 export const Layout = ({ children }) => (
   <>
     <Helmet>
@@ -11,10 +13,13 @@ export const Layout = ({ children }) => (
       <meta name="description" content={config.siteDescription} />
     </Helmet>
     <nav className="pt-16">
-      <Container>
+      <Container className="flex">
         <Link to="/">
           <mark className="font-semibold p-2">Prabu Weerasinghe</mark>
         </Link>
+        <div className="ml-auto nav-links">
+          <Link to="/about">About me</Link>
+        </div>
       </Container>
     </nav>
     <main className="py-8">

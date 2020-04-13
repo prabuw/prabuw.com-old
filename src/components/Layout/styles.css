@@ -1,0 +1,11 @@
+.nav-links > a {
+  @apply text-gray-700;
+}
+
+.nav-links > a:not(:last-child) {
+  @apply mr-4;
+}
+
+.nav-links > a:hover {
+  @apply text-black;
+}
