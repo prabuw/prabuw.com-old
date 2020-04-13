@@ -14,7 +14,7 @@ export const Post = ({ slug, postNode }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{`${post.title} | ${config.siteTitle}`}</title>
+        <title>{`${post.title} — ${config.siteTitle}`}</title>
       </Helmet>
       <SEO postPath={slug} postNode={postNode} />
       <h1>{post.title}</h1>
