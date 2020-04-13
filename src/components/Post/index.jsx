@@ -1,5 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
+import _ from "lodash";
 import { Link } from "gatsby";
 import { TwitterShareButton } from "react-share";
 import urljoin from "url-join";
@@ -28,6 +29,11 @@ export const Post = ({ slug, postNode }) => {
           <span className="mr-3 text-gray-700 hover:text-blue-400">Share</span>
         </TwitterShareButton>
       </div>
+      {post.tags.map(tag => (
+        <Link className="mr-3 italic text-sm" to={`/tags/${_.kebabCase(tag)}`}>
+          {tag}
+        </Link>
+      ))}
       <div
         className="mt-12"
         dangerouslySetInnerHTML={{ __html: postNode.html }}
