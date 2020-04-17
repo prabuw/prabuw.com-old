@@ -14,8 +14,6 @@ const config = {
   userEmail: 'prabu.weerasinghe@gmail.com', // Email used for RSS feed's author segment
   userTwitter: 'prabz', // Optionally renders "Follow Me" in the UserInfo segment.
   copyright: 'Copyright © 2020.', // Copyright string for the footer of the website and RSS feed.
-  themeColor: '#c62828', // Used for setting manifest and progress theme colors.
-  backgroundColor: '#e0e0e0', // Used for setting manifest background color.
 };
 
 module.exports = config;
