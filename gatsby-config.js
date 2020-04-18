@@ -76,7 +76,7 @@ module.exports = {
         name: config.siteTitle,
         short_name: config.siteTitleShort,
         description: config.siteDescription,
-        start_url: config.pathPrefix,
+        start_url: '/',
         background_color: '#fffff',
         theme_color: '#c62828',
         display: 'minimal-ui',
