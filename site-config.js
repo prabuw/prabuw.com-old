@@ -2,7 +2,7 @@ const config = {
   siteTitle: 'Prabu Weerasinghe', // Site title.
   siteTitleShort: "Prabu's Blog", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt: 'Prabu Weerasinghe', // Alternative site title for SEO.
-  siteLogo: '/logos/logo-1024.png', // Logo used for SEO and manifest.
+  siteLogo: '/static/favicon.png', // Logo used for SEO and manifest.
   siteUrl: 'https://www.prabuw.com', // Domain of your website.
   siteDescription: "Prabu Weerasinghe's Blog.", // Website description used for RSS feeds/meta description tag.
   siteRss: '/rss.xml', // Path to the RSS file.
