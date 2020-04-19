@@ -5,7 +5,7 @@ import { PostFeed } from '../PostFeed';
 
 export const PostsByTagFeed = ({ tag, postEdges }) => {
   return (
-    <Layout>
+    <Layout title={`Posts tagged as ${tag}`}>
       <h2 className="mb-12">
         Posts tagged as <span className="italic underline">{tag}</span>
       </h2>

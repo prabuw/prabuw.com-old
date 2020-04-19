@@ -20,10 +20,7 @@ export const Post = ({ postNode }) => {
   const twitterIconOpacityClass = shouldShowTwitterIcon ? 'opacity-100' : 'opacity-0';
 
   return (
-    <Layout>
-      <Helmet>
-        <title>{`${post.title} — ${config.siteTitle}`}</title>
-      </Helmet>
+    <Layout title={post.title}>
       <Seo postPath={fields.slug} postNode={postNode} />
       <h1>{post.title}</h1>
       <div className="text-sm">

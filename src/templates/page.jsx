@@ -1,21 +1,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
 import { Layout } from '../components/Layout';
-import config from '../../site-config';
 
 const PostTemplate = ({ data }) => {
   const postNode = data.markdownRemark;
 
   return (
-    <>
-      <Helmet>
-        <title>{`${postNode.frontmatter.title} - ${config.siteTitle}`}</title>
-      </Helmet>
-      <Layout>
-        <article dangerouslySetInnerHTML={{ __html: postNode.html }} />
-      </Layout>
-    </>
+    <Layout title={postNode.frontmatter.title}>
+      <article dangerouslySetInnerHTML={{ __html: postNode.html }} />
+    </Layout>
   );
 };
 
