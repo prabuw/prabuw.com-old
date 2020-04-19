@@ -20,3 +20,14 @@ You can find me at:
 - [GitHub](http://www.github.com/prabuw)
 - [Instagram](http://www.instagram.com/prabu84)
 - [LinkedIn](http://www.linkedin.com/prabuw)
+
+---
+
+This blog is a place for me to capture my _random_ thoughts, [learn in public](https://www.swyx.io/writing/learn-in-public/) and put a flag down on a tiny corner on the _interwebs_.
+
+The site is a heavily customised version of the [gatsby advanced starter](https://www.gatsbyjs.org/starters/Vagr9K/gatsby-advanced-starter/) theme.
+The design of this site is inspired by the following:
+
+- [Rasmus Andersson](https://rsms.me/about/)
+- [Tania Rascia](https://www.taniarascia.com/me/)
+- [Victor Zhou](https://victorzhou.com/about/)
