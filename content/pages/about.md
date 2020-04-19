@@ -14,7 +14,7 @@ While London is where I am based, Sydney will always be home.
 
 ![Sydney](/sydney.jpg 'Sydney')
 
-Aside from tech, I am interested in [cooking](/cooking), [football](http://www.arsenal.com), [running](/running) and [travelling](/photos).
+Aside from tech, I am interested in [cooking](/kitchen), [football](http://www.arsenal.com), [running](/running) and [travelling](/photos).
 
 You can find me at:
 
