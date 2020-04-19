@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
 
-const PostTemplate = ({ data }) => {
+const PageTemplate = ({ data }) => {
   const postNode = data.markdownRemark;
 
   return (
@@ -12,7 +12,7 @@ const PostTemplate = ({ data }) => {
   );
 };
 
-export default PostTemplate;
+export default PageTemplate;
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
