@@ -1,8 +1,8 @@
 /* Custom fonts */
-@import url("https://rsms.me/inter/inter.css");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
 
 /*
 ** Custom base styles
@@ -65,7 +65,7 @@ a[href]:hover {
   text-decoration: underline;
   text-decoration-color: rgba(3, 102, 214, 0.6);
 }
-a[href^="#"]:hover {
+a[href^='#']:hover {
   text-decoration-style: dashed;
 }
 ::selection {
@@ -92,6 +92,12 @@ h5 > a:hover,
 h6 > a:hover {
   color: inherit !important;
   background-color: transparent !important;
+}
+
+ul,
+ol {
+  @apply mt-4;
+  @apply ml-4;
 }
 
 ol li {
@@ -136,8 +142,12 @@ table td {
 pre,
 code,
 tt {
-  font-family: "IBM Plex Mono", monospace !important;
-  font-feature-settings: "ss02" 1, "zero" 1;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-feature-settings: 'ss02' 1, 'zero' 1;
+}
+
+p:not(:first-child) {
+  @apply mt-6;
 }
 
 /* Custom site styles */
@@ -149,7 +159,7 @@ html {
 body {
   @apply text-base;
   @apply text-black;
-  font-family: "Inter var", -system-ui, system-ui, sans-serif;
+  font-family: 'Inter var', -system-ui, system-ui, sans-serif;
   font-size-adjust: none;
   @apply not-italic;
   font-variant: normal;
@@ -161,12 +171,12 @@ body {
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 
-  -moz-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
-  -ms-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
-  -o-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
-  -webkit-font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
-  font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  -moz-font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
+  -ms-font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
+  -o-font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
+  -webkit-font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
+  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
 }
 
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

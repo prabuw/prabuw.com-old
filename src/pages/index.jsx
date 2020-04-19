@@ -10,7 +10,9 @@ const HomePage = ({ data }) => {
     <Layout>
       <section>
         <p>I am a software engineer based in London, UK.</p>
-        <p>I am interested in software, product strategy and engineering management.</p>
+        <p style={{ marginTop: 0 }}>
+          I am interested in software, product strategy and engineering management.
+        </p>
       </section>
       <main className="py-8">
         {postEdges.length === 0 ? <>No posts, yet.</> : <PostFeed postEdges={postEdges} />}
