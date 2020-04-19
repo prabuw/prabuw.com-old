@@ -18,10 +18,10 @@ Aside from tech, I am interested in [cooking](/kitchen), [football](http://www.a
 
 You can find me at:
 
-- [Twitter](http://www.twitter.com/prabz)
-- [GitHub](http://www.github.com/prabuw)
-- [Instagram](http://www.instagram.com/prabu84)
-- [LinkedIn](http://www.linkedin.com/prabuw)
+- [Twitter](https://www.twitter.com/prabz)
+- [GitHub](https://www.github.com/prabuw)
+- [Instagram](https://www.instagram.com/prabu84)
+- [LinkedIn](https://www.linkedin.com/in/prabuw)
 
 ---
 
