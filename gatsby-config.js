@@ -174,5 +174,12 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-netlify-cache',
+      options: {
+        extraDirsToCache: ['.strava'],
+      },
+    },
+    'gatsby-source-strava',
   ],
 };

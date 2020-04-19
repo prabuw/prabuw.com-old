@@ -135,6 +135,7 @@ table th {
   @apply py-2;
 }
 
+table th,
 table td {
   @apply border;
 }
