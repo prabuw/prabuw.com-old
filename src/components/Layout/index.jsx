@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
-import { Container } from '../Container';
 import config from '../../../site-config';
 
 import './styles.css';
@@ -32,3 +31,7 @@ export const Layout = ({ title, children }) => {
     </>
   );
 };
+
+const Container = ({ className, children }) => (
+  <div className={`${className} container mx-auto max-w-3xl px-8`}>{children}</div>
+);
