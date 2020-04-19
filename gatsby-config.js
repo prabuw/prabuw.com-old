@@ -160,5 +160,19 @@ module.exports = {
     },
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-svg',
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow',
+            },
+          },
+        ],
+      },
+    },
   ],
 };
