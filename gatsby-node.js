@@ -1,40 +1,44 @@
 /* eslint "no-console": "off" */
 
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 const _ = require('lodash');
 const moment = require('moment');
 const siteConfig = require('./site-config');
 
+const formatDate = date => moment(date).format('MMMM DD, YYYY');
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  let slug;
+
   if (node.internal.type === 'MarkdownRemark') {
-    const fileNode = getNode(node.parent);
-    const parsedFilePath = path.parse(fileNode.relativePath);
-    if (
-      Object.prototype.hasOwnProperty.call(node, 'frontmatter') &&
-      Object.prototype.hasOwnProperty.call(node.frontmatter, 'title')
-    ) {
-      slug = `/${_.kebabCase(node.frontmatter.title)}`;
-    } else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
-      slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
-    } else if (parsedFilePath.dir === '') {
-      slug = `/${parsedFilePath.name}/`;
+    if (typeof node.frontmatter.slug !== 'undefined') {
+      createNodeField({
+        node,
+        name: 'slug',
+        value: `/blog/${_.kebabCase(node.frontmatter.title)}`,
+      });
     } else {
-      slug = `/${parsedFilePath.dir}/`;
+      const value = createFilePath({ node, getNode });
+      createNodeField({
+        node,
+        name: 'slug',
+        value,
+      });
     }
 
-    if (Object.prototype.hasOwnProperty.call(node, 'frontmatter')) {
-      if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'slug'))
-        slug = `/blog/${_.kebabCase(node.frontmatter.slug)}`;
-      if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'date')) {
-        const date = moment(node.frontmatter.date, siteConfig.dateFromFormat);
-        if (!date.isValid) console.warn(`WARNING: Invalid date.`, node.frontmatter);
-
-        createNodeField({ node, name: 'date', value: date.toISOString() });
-      }
+    if (node.frontmatter.date) {
+      createNodeField({ node, name: 'date', value: node.frontmatter.date });
+      createNodeField({ node, name: 'dateFormatted', value: formatDate(node.frontmatter.date) });
     }
-    createNodeField({ node, name: 'slug', value: slug });
+
+    if (node.frontmatter.dateModified) {
+      createNodeField({
+        node,
+        name: 'dateModifiedFormatted',
+        value: formatDate(node.frontmatter.dateModified),
+      });
+    }
   }
 };
 
@@ -52,11 +56,11 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             fields {
               slug
+              dateFormatted
             }
             frontmatter {
               title
               tags
-              date
             }
           }
         }
