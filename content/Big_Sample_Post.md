@@ -3,6 +3,7 @@ title: 'Big Test'
 cover: '5.jpg'
 date: '2018-03-01'
 slug: 'Big-Sample_Test'
+template: 'post'
 tags:
   - test
   - huge

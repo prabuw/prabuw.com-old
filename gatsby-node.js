@@ -4,7 +4,6 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const _ = require('lodash');
 const moment = require('moment');
-const siteConfig = require('./site-config');
 
 const formatDate = date => moment(date).format('MMMM DD, YYYY');
 
@@ -45,10 +44,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const postPage = path.resolve('src/templates/post.jsx');
-  const tagPage = path.resolve('src/templates/tag.jsx');
-
-  // Get a full list of markdown posts
   const markdownQueryResult = await graphql(`
     {
       allMarkdownRemark {
@@ -60,6 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             frontmatter {
               title
+              template
               tags
             }
           }
@@ -69,58 +65,32 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   if (markdownQueryResult.errors) {
-    console.error(markdownQueryResult.errors);
     throw markdownQueryResult.errors;
   }
 
   const tagSet = new Set();
-  const postsEdges = markdownQueryResult.data.allMarkdownRemark.edges;
+  const { edges } = markdownQueryResult.data.allMarkdownRemark;
 
-  // Sort posts
-  postsEdges.sort((postA, postB) => {
-    const dateA = moment(postA.node.frontmatter.date, siteConfig.dateFromFormat);
+  edges.forEach(({ node }) => {
+    const { frontmatter, fields } = node;
 
-    const dateB = moment(postB.node.frontmatter.date, siteConfig.dateFromFormat);
-
-    if (dateA.isBefore(dateB)) return 1;
-    if (dateB.isBefore(dateA)) return -1;
-
-    return 0;
-  });
-
-  // Post page creating
-  postsEdges.forEach((edge, index) => {
-    // Generate a list of tags
-    if (edge.node.frontmatter.tags) {
-      edge.node.frontmatter.tags.forEach(tag => {
-        tagSet.add(tag);
-      });
+    if (frontmatter.tags) {
+      frontmatter.tags.forEach(tagSet.add, tagSet);
     }
 
-    // Create post pages
-    const nextID = index + 1 < postsEdges.length ? index + 1 : 0;
-    const prevID = index - 1 >= 0 ? index - 1 : postsEdges.length - 1;
-    const nextEdge = postsEdges[nextID];
-    const prevEdge = postsEdges[prevID];
-
     createPage({
-      path: edge.node.fields.slug,
-      component: postPage,
+      path: fields.slug,
+      component: path.resolve(`src/templates/${frontmatter.template}.jsx`),
       context: {
-        slug: edge.node.fields.slug,
-        nexttitle: nextEdge.node.frontmatter.title,
-        nextslug: nextEdge.node.fields.slug,
-        prevtitle: prevEdge.node.frontmatter.title,
-        prevslug: prevEdge.node.fields.slug,
+        slug: fields.slug,
       },
     });
   });
 
-  //  Create tag pages
   tagSet.forEach(tag => {
     createPage({
       path: `/tags/${_.kebabCase(tag)}/`,
-      component: tagPage,
+      component: path.resolve('src/templates/tag.jsx'),
       context: { tag },
     });
   });

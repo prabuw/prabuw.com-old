@@ -9,8 +9,6 @@ const config = {
   siteRssTitle: "Prabu Weerasinghe's Blog", // Title of the RSS feed
   siteFBAppID: '1825356251115265', // FB Application ID for using app insights
   googleAnalyticsID: 'UA-47311644-5', // GA tracking ID.
-  dateFromFormat: 'YYYY-MM-DD', // Date format used in the frontmatter.
-  dateFormat: 'DD/MM/YYYY', // Date format for display.
   userEmail: 'prabu.weerasinghe@gmail.com', // Email used for RSS feed's author segment
   userTwitter: 'prabz', // Optionally renders "Follow Me" in the UserInfo segment.
   copyright: 'Copyright © 2020.', // Copyright string for the footer of the website and RSS feed.
