@@ -4,4 +4,4 @@ slug: 'kitchen'
 template: 'kitchen'
 ---
 
-Food — what more is there to say? I'm transcribing here my favourite receipes here.
+Food — what more is there to say? I'm transcribing my favourite receipes here.
