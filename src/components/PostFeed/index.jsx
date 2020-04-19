@@ -11,7 +11,7 @@ export const PostFeed = ({ postEdges }) => {
           className="flex flex-row mb-2"
         >
           <div className="flex-grow">{postEdge.node.frontmatter.title}</div>
-          <div className="flex-grow-0">{postEdge.node.frontmatter.shortDate}</div>
+          <div className="flex-grow-0">{postEdge.node.fields.dateFormatted}</div>
         </Link>
       ))}
     </section>

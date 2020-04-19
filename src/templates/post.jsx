@@ -2,11 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Post } from '../components/Post';
 
-const PostTemplate = ({ data, pageContext }) => {
-  const { slug } = pageContext;
+const PostTemplate = ({ data }) => {
   const postNode = data.markdownRemark;
 
-  return <Post slug={slug} postNode={postNode} />;
+  return <Post postNode={postNode} />;
 };
 
 export default PostTemplate;
@@ -22,12 +21,11 @@ export const pageQuery = graphql`
         title
         cover
         date
-        shortDate: date(formatString: "MMMM DD, YYYY")
         tags
       }
       fields {
         slug
-        date
+        dateFormatted
       }
     }
   }

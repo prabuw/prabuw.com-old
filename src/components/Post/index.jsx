@@ -9,9 +9,9 @@ import { Seo } from '../Seo';
 import config from '../../../site-config';
 import TwitterLogo from './twitter-logo.svg';
 
-export const Post = ({ slug, postNode }) => {
+export const Post = ({ postNode }) => {
   const [shouldShowTwitterIcon, setShouldShowTwitterIcon] = useState(false);
-  const post = postNode.frontmatter;
+  const { frontmatter: post, fields } = postNode;
 
   function toggleTwitterIcon() {
     setShouldShowTwitterIcon(!shouldShowTwitterIcon);
@@ -24,14 +24,14 @@ export const Post = ({ slug, postNode }) => {
       <Helmet>
         <title>{`${post.title} — ${config.siteTitle}`}</title>
       </Helmet>
-      <Seo postPath={slug} postNode={postNode} />
+      <Seo postPath={fields.slug} postNode={postNode} />
       <h1>{post.title}</h1>
       <div className="text-sm">
         <time dateTime={post.date} className="mr-3 text-gray-500">
-          {post.shortDate}
+          {fields.dateFormatted}
         </time>
         <TwitterShareButton
-          url={urljoin(config.siteUrl, slug)}
+          url={urljoin(config.siteUrl, fields.slug)}
           title={post.title}
           onMouseEnter={toggleTwitterIcon}
           onMouseLeave={toggleTwitterIcon}

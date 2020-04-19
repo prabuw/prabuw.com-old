@@ -35,12 +35,12 @@ export const pageQuery = graphql`
         node {
           fields {
             slug
+            dateFormatted
           }
           excerpt
           timeToRead
           frontmatter {
             title
-            shortDate: date(formatString: "DD MMMM YYYY")
           }
         }
       }
