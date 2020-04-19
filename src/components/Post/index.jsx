@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import { TwitterShareButton } from 'react-share';
 import urljoin from 'url-join';
 import { Layout } from '../Layout';
-import SEO from '../SEO/SEO';
+import { Seo } from '../Seo';
 import config from '../../../site-config';
 import TwitterLogo from './twitter-logo.svg';
 
@@ -24,7 +24,7 @@ export const Post = ({ slug, postNode }) => {
       <Helmet>
         <title>{`${post.title} — ${config.siteTitle}`}</title>
       </Helmet>
-      <SEO postPath={slug} postNode={postNode} />
+      <Seo postPath={slug} postNode={postNode} />
       <h1>{post.title}</h1>
       <div className="text-sm">
         <time dateTime={post.date} className="mr-3 text-gray-500">
