@@ -140,6 +140,15 @@ table td {
   @apply border;
 }
 
+thead tr {
+  @apply border-b-2;
+  @apply border-gray-400;
+}
+
+tbody tr:nth-child(odd) {
+  @apply bg-gray-100;
+}
+
 pre,
 code,
 tt {
@@ -154,7 +163,7 @@ p:not(:first-child) {
 /* Custom site styles */
 
 html {
-  background-color: white;
+  @apply bg-white;
 }
 
 body {
