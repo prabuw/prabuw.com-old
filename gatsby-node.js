@@ -1,5 +1,3 @@
-/* eslint "no-console": "off" */
-
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const _ = require('lodash');
@@ -11,11 +9,18 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'MarkdownRemark') {
-    if (typeof node.frontmatter.slug !== 'undefined') {
+    const { frontmatter } = node;
+
+    if (typeof frontmatter.slug !== 'undefined') {
+      const slug =
+        frontmatter.template === 'post'
+          ? `/blog/${_.kebabCase(frontmatter.title)}`
+          : _.kebabCase(frontmatter.title);
+
       createNodeField({
         node,
         name: 'slug',
-        value: `/blog/${_.kebabCase(node.frontmatter.title)}`,
+        value: slug,
       });
     } else {
       const value = createFilePath({ node, getNode });
@@ -26,16 +31,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       });
     }
 
-    if (node.frontmatter.date) {
-      createNodeField({ node, name: 'date', value: node.frontmatter.date });
-      createNodeField({ node, name: 'dateFormatted', value: formatDate(node.frontmatter.date) });
+    if (frontmatter.date) {
+      createNodeField({ node, name: 'date', value: frontmatter.date });
+      createNodeField({ node, name: 'dateFormatted', value: formatDate(frontmatter.date) });
     }
 
-    if (node.frontmatter.dateModified) {
+    if (frontmatter.dateModified) {
       createNodeField({
         node,
         name: 'dateModifiedFormatted',
-        value: formatDate(node.frontmatter.dateModified),
+        value: formatDate(frontmatter.dateModified),
       });
     }
   }
