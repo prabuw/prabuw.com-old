@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import { TwitterShareButton } from 'react-share';
 import urljoin from 'url-join';
 import { Layout } from '../Layout';
-import { Seo } from '../Seo';
+import { Seo } from '../SEO';
 import config from '../../../site-config';
 
 export const Post = ({ postNode }) => {
