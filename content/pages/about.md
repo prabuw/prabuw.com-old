@@ -12,6 +12,8 @@ I am interested in software, product strategy and engineering management.
 I am originally from Sri Lanka but moved around with my family. I have lived in Indonesia, Singapore and Australia.
 While London is where I am based, Sydney will always be home.
 
+![Sydney](/sydney.jpg 'Sydney')
+
 Aside from tech, I am interested in [cooking](/cooking), [football](http://www.arsenal.com), [running](/running) and [travelling](/photos).
 
 You can find me at:
