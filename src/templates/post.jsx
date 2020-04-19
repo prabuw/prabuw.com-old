@@ -23,7 +23,6 @@ export const pageQuery = graphql`
         cover
         date
         shortDate: date(formatString: "MMMM DD, YYYY")
-        category
         tags
       }
       fields {
