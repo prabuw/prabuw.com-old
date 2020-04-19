@@ -25,7 +25,7 @@ You can find me at:
 
 ---
 
-This blog is a place for me to capture my _random_ thoughts, [learn in public](https://www.swyx.io/writing/learn-in-public/) and put a flag down on a tiny corner on the _interwebs_.
+This blog is a place for me to capture my _random_ thoughts, [learn in public](https://www.swyx.io/writing/learn-in-public/) and put a flag down on my tiny corner on the _interwebs_.
 
 The site is a heavily customised version of the [gatsby advanced starter](https://www.gatsbyjs.org/starters/Vagr9K/gatsby-advanced-starter/) theme.
 The design of this site is inspired by the following:
