@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import Helmet from 'react-helmet';
 import _ from 'lodash';
+import clsx from 'clsx';
 import { Link } from 'gatsby';
 import { TwitterShareButton } from 'react-share';
 import urljoin from 'url-join';
 import { Layout } from '../Layout';
 import { Seo } from '../Seo';
 import config from '../../../site-config';
-import TwitterLogo from './twitter-logo.svg';
 
 export const Post = ({ postNode }) => {
   const [shouldShowTwitterIcon, setShouldShowTwitterIcon] = useState(false);
@@ -16,8 +15,6 @@ export const Post = ({ postNode }) => {
   function toggleTwitterIcon() {
     setShouldShowTwitterIcon(!shouldShowTwitterIcon);
   }
-
-  const twitterIconOpacityClass = shouldShowTwitterIcon ? 'opacity-100' : 'opacity-0';
 
   return (
     <Layout title={post.title}>
@@ -33,10 +30,24 @@ export const Post = ({ postNode }) => {
           onMouseEnter={toggleTwitterIcon}
           onMouseLeave={toggleTwitterIcon}
         >
-          <span className="mr-2 text-gray-700 hover:text-black">Share</span>
-          <TwitterLogo
-            className={`${twitterIconOpacityClass} inline-block h-4 w-4 fill-current text-blue-400 transition-opacity duration-300 linear`}
-          />
+          <span
+            className={clsx(
+              { 'text-black': shouldShowTwitterIcon },
+              { 'text-gray-700': !shouldShowTwitterIcon },
+              'mr-1'
+            )}
+          >
+            Share
+          </span>
+          <span
+            className={clsx(
+              { 'opacity-100': shouldShowTwitterIcon },
+              { 'opacity-0': !shouldShowTwitterIcon },
+              'inline-block transition-opacity duration-200 ease-in'
+            )}
+          >
+            on twitter
+          </span>
         </TwitterShareButton>
       </div>
       {post.tags.map(tag => (

@@ -4,6 +4,7 @@
   "version": "1.1.0",
   "author": "Prabu Weerasinghe <prabu.weerasinghe@gmail.com>",
   "dependencies": {
+    "clsx": "^1.1.0",
     "gatsby": "^2.19.12",
     "gatsby-image": "^2.2.40",
     "gatsby-plugin-catch-links": "^2.1.25",
