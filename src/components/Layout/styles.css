@@ -8,6 +8,7 @@ a.brand:hover {
 
 .nav-links > a {
   @apply text-gray-700;
+  @apply text-sm;
 }
 
 .nav-links > a:not(:last-child) {
