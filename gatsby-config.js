@@ -159,7 +159,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-postcss',
-    'gatsby-plugin-react-svg',
     {
       resolve: `gatsby-transformer-remark`,
       options: {
