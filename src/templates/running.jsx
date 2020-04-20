@@ -55,7 +55,7 @@ export const runningQuery = graphql`
       }
     }
     allStravaActivity(
-      filter: { activity: { type: { eq: "Run" } } }
+      filter: { activity: { type: { eq: "Run" }, distance: { gte: 4000 } } }
       sort: { order: DESC, fields: activity___start_date }
     ) {
       edges {
