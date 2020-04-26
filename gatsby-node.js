@@ -5,6 +5,11 @@ const moment = require('moment');
 
 const formatDate = date => moment(date).format('MMMM DD, YYYY');
 
+const slugPrefixMap = {
+  post: 'blog',
+  receipe: 'kitchen',
+};
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
@@ -12,9 +17,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const { frontmatter } = node;
 
     if (typeof frontmatter.slug !== 'undefined') {
+      const slugPrefix = slugPrefixMap[frontmatter.template];
+
       const slug =
-        frontmatter.template === 'post'
-          ? `/blog/${_.kebabCase(frontmatter.title)}`
+        slugPrefix != null
+          ? `/${slugPrefix}/${_.kebabCase(frontmatter.title)}`
           : _.kebabCase(frontmatter.title);
 
       createNodeField({

@@ -1,13 +1,16 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
+import { PostFeed } from '../components/PostFeed';
 
 const PageTemplate = ({ data }) => {
   const postNode = data.markdownRemark;
+  const postEdges = data.allMarkdownRemark.edges;
 
   return (
     <Layout title={postNode.frontmatter.title}>
-      <article dangerouslySetInnerHTML={{ __html: postNode.html }} />
+      <section className="mb-6" dangerouslySetInnerHTML={{ __html: postNode.html }} />
+      <PostFeed postEdges={postEdges} />
     </Layout>
   );
 };
@@ -21,6 +24,19 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+      }
+    }
+    allMarkdownRemark(filter: { frontmatter: { template: { eq: "receipe" } } }) {
+      edges {
+        node {
+          fields {
+            slug
+            dateFormatted
+          }
+          frontmatter {
+            title
+          }
+        }
       }
     }
   }
