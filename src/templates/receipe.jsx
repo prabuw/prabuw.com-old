@@ -36,7 +36,7 @@ const ReceipeTemplate = ({ data }) => {
           ))}
         </div>
       </section>
-      <section className="mb-10 text-gray-700">
+      <section className="mb-8 text-gray-700">
         <div className="flex flex-row mb-1">
           <div className="pr-1">Preparation time:</div>
           <div>{formatTime(frontmatter.prepTime)}</div>
