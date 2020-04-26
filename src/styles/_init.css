@@ -96,8 +96,8 @@ h6 > a:hover {
 
 ul,
 ol {
-  @apply mt-4;
-  @apply ml-4;
+  @apply my-4;
+  @apply my-4;
 }
 
 ol li {

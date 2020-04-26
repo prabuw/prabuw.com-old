@@ -6,8 +6,9 @@ date: '2020-04-21'
 tags:
   - slow cooked
   - pork
-prepTime: 10
+prepTime: 15
 cookingTime: 360
+servings: 2
 ---
 
 #### Ingredients
@@ -30,3 +31,10 @@ cookingTime: 360
 4. Grab the slow cooker pot and put all the ingredients in
 5. Mix it all up and let it marinate (longer the better)
 6. Turn the slow cooker on low and let it sit for 6 hours.
+
+---
+
+#### Goes with
+
+- Rice or cous cous
+- Spinach with a bit of butter
