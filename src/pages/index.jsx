@@ -27,8 +27,8 @@ export default HomePage;
 export const pageQuery = graphql`
   query {
     allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { template: { eq: "post" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {

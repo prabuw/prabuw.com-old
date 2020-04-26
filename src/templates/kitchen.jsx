@@ -26,7 +26,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(filter: { frontmatter: { template: { eq: "receipe" } } }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { template: { eq: "receipe" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           fields {
@@ -35,6 +38,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            date
           }
         }
       }
