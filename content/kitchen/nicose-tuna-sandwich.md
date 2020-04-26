@@ -31,14 +31,14 @@ servings: 1
 
 #### Steps
 
-1. Pickled shallots: You can do this before for more pickled goodness. The longer the better.
+1. Pickled shallots: You can do this before for more pickled goodness. The earlier the better.
 
-    - Find a old jar with a lid.
-    - Chop up the shallot into stringy pieces.
+    - Find an old jar with a lid.
+    - Chop up the shallot medium sized pieces.
     - Add into the jar and shake:
         - 2 tsp of white sugar
-        - 3 tbsp of lemon juice
-        - Stringy shallot pieces
+        - 4 tbsp of lemon juice
+        - Chopped up shallot pieces
 
 2. Take a pot, fill it with water, a generous pinch of salt and bring it to the boil.
 3. While we are waiting for the water come to the boil, let's make a spread:
