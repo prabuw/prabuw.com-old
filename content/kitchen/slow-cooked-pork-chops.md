@@ -1,14 +1,16 @@
 ---
 title: 'Slow cooked pork chops'
-slug: 'slow-cooked-sweet-pork-chops'
+slug: 'slow-cooked-pork-chops'
 template: 'receipe'
 date: '2020-04-21'
 tags:
-  - slow cooker
+  - slow cooked
   - pork
+prepTime: 10
+cookingTime: 360
 ---
 
-## Ingredients
+#### Ingredients
 
 - 4 boneless pork chops
 - 4 tbsp of brown sugar
@@ -18,7 +20,9 @@ tags:
 - Pinch of kosher salt
 - Pinch of black Pepper
 
-## Steps
+---
+
+#### Steps
 
 1. Crush the cloves of garlic
 2. Crush the ginger
