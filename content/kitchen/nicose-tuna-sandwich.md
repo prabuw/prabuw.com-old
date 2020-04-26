@@ -8,7 +8,7 @@ tags:
   - tuna
 prepTime: 10
 cookingTime: 20
-servings: 2
+servings: 1
 ---
 
 #### Ingredients
@@ -57,8 +57,7 @@ servings: 2
     - Slice the rolls in half.
     - Put the pan on medium heat.
     - Wait till the eggs are nearly done first ~ 2 minute before it is ready.
-    - Place the inside of the halve bread roll down.
-    - 30 seconds should be enough to toast it.
+    - Toast the halved bread rolls ~ 30s should be enough.
 
 6. Take the eggs and let them cool.
 7. Take toasted bread rolls and apply the spread on both halves — be generous.
