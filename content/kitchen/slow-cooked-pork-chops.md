@@ -25,11 +25,11 @@ servings: 2
 
 #### Steps
 
-1. Crush the cloves of garlic
-2. Crush the ginger
-3. Cut the fat of the pork chops
-4. Grab the slow cooker pot and put all the ingredients in
-5. Mix it all up and let it marinate (longer the better)
+1. Crush the cloves of garlic.
+2. Crush the ginger.
+3. Cut the fat of the pork chops.
+4. Grab the slow cooker pot and put all the ingredients into it.
+5. Mix it all up and let it marinate (longer the better).
 6. Turn the slow cooker on low and let it sit for 6 hours.
 
 ---

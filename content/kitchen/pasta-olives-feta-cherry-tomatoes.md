@@ -28,15 +28,15 @@ servings: 4
 1. Get a large pot, add water, a large pinch of salt and then bring it to the boil.
 2. While the water is coming to the boil:
 
-   - Wash the cherry tomatoes and cut them into halves
-   - Cut the block of feta into small cubes
-   - Finely cut the parsley ~ throw away the stalks
+   - Wash the cherry tomatoes and cut them into halves.
+   - Cut the block of feta into small cubes.
+   - Finely cut the parsley ~ throw away the stalks.
 
 3. Once the water is boiling, add the pasta and let it cook:
 
-   - Turn the heat down to medium
-   - Set the timer to 1 min less than the time on the pasta packet ~ al dente
+   - Turn the heat down to medium.
+   - Set the timer to 1 min less than the time on the pasta packet ~ al dente.
 
-4. Once the pasta is cooked, drain the water and add the pasta back to the pot
-5. Add the spicy sun-dried tomato pesto and mix it through
-6. Add the remaining ingredients one by one (cherry tomatoes, feta cheese, olives and parsley) and mix it through well
+4. Once the pasta is cooked, drain the water and add the pasta back to the pot.
+5. Add the spicy sun-dried tomato pesto and mix it through.
+6. Add the remaining ingredients one by one (cherry tomatoes, feta cheese, olives and parsley) and mix it through well.
