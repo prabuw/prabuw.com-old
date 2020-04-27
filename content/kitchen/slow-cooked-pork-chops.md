@@ -8,7 +8,6 @@ tags:
   - pork
 prepTime: 15
 cookingTime: 360
-servings: 2
 ---
 
 #### Ingredients

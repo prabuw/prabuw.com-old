@@ -8,7 +8,6 @@ tags:
   - vegetarian
 prepTime: 15
 cookingTime: 15
-servings: 4
 ---
 
 #### Ingredients

@@ -8,7 +8,6 @@ tags:
   - tuna
 prepTime: 10
 cookingTime: 20
-servings: 1
 ---
 
 #### Ingredients
@@ -41,7 +40,7 @@ servings: 1
         - Chopped up shallot pieces
 
 2. Take a pot, fill it with water, a generous pinch of salt and bring it to the boil.
-3. While we are waiting for the water come to the boil, let's make a spread:
+3. While we are waiting for the water to come to the boil, let's make a spread:
 
    - Take a small pot or cup, add the mayonnaise, smoked paprika and mix it.
    - Add a pinch of kosher salt.
