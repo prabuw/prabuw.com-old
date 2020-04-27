@@ -16,8 +16,8 @@ cookingTime: 45
 - 1 red onion
 - 5 eggs
 - 1 cup of flour
-- 1/2 cup of grated cheddar cheese
-- 1/2 cup of olive oil
+- 1 cup of olive oil
+- &frac12 cup of grated cheddar cheese
 - kosher salt
 - black pepper
 - a small knob butter to grease a baking container
