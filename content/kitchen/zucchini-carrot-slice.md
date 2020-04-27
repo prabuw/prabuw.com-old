@@ -26,7 +26,7 @@ cookingTime: 45
 
 #### Steps
 
-1. Turn on the oven to 200 degrees celsius.
+1. Turn on the oven to 200 &#8451;.
 2. Peel the skin of the zucchinis into a waste bowl
 3. Optional: Peel the a layer of the carrot into the waste bowl.
 4. Get a large bowl and roughly grate the zucchinis and carrots.
