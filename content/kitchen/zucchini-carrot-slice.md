@@ -15,9 +15,9 @@ cookingTime: 45
 - 3 carrots
 - 1 red onion
 - 5 eggs
-- 1 cup of flour
-- 1 cup of olive oil
-- &frac12 cup of grated cheddar cheese
+- 1 cup of self-raising flour
+- 1 cup of grated cheddar cheese
+- &frac12 cup of olive oil
 - kosher salt
 - black pepper
 - a small knob butter to grease a baking container
