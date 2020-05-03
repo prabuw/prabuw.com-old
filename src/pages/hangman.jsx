@@ -2,6 +2,7 @@ import React from 'react';
 import { useMachine } from '@xstate/react';
 import { Machine, assign } from 'xstate';
 import clsx from 'clsx';
+import ReactRough, { Rectangle, Line, Circle, Ellipse } from 'react-rough';
 import { Layout } from '../components/Layout';
 
 function buildAlphabet() {
@@ -16,6 +17,10 @@ function buildAlphabet() {
   }
 
   return alphabet;
+}
+
+function degreesToRadians(degrees) {
+  return (degrees * Math.PI) / 180;
 }
 
 //TODO: Tidy up machine
@@ -100,10 +105,100 @@ const hangmanMachine = Machine({
 
 const Hangman = () => {
   const [state, send] = useMachine(hangmanMachine);
+  const [center, setCenter] = React.useState(0);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    setCenter(ref.current ? ref.current.offsetWidth / 2 : 0);
+  }, [ref.current]);
+
+  const beamWidth = 200;
+  const beamStartX = center - beamWidth / 2;
+  const beamCenterX = beamStartX + beamWidth / 2 + 5;
+  const beamY = 20;
+  const beamHeight = 10;
+  const nooseStartY = beamY + beamHeight;
+  const nooseLen = 30;
+  const nooseEndY = nooseStartY + nooseLen;
+  const headRadius = 20;
+  const bodyWidth = 40;
+  const bodyHeight = 80;
+  const bodyX = beamCenterX;
+  const bodyY = beamY + beamHeight + nooseLen + headRadius * 2 + bodyHeight / 2;
+
+  const leftArmRadians = degreesToRadians(150);
+
+  const leftArmStartX = bodyX + (bodyWidth / 2) * Math.cos(leftArmRadians);
+  const leftArmStartY = bodyY - (bodyHeight / 2) * Math.sin(leftArmRadians);
+  const leftArmEndX = leftArmStartX * 0.95;
+  const leftArmEndY = bodyY * 1.1;
+
+  const rightArmRadians = degreesToRadians(30);
+
+  const rightArmStartX = bodyX + (bodyWidth / 2) * Math.cos(rightArmRadians);
+  const rightArmStartY = bodyY - (bodyHeight / 2) * Math.sin(rightArmRadians);
+  const rightArmEndX = rightArmStartX * 1.05;
+  const rightArmEndY = bodyY * 1.1;
+
+  const leftLegRadians = degreesToRadians(225);
+
+  const leftLegStartX = bodyX + (bodyWidth / 2) * Math.cos(leftLegRadians);
+  const leftLegStartY = bodyY - (bodyHeight / 2) * Math.sin(leftLegRadians);
+  const leftLegEndX = leftLegStartX * 0.95;
+  const leftLegEndY = leftLegStartY * 1.25;
+
+  const rightLegRadians = degreesToRadians(315);
+
+  const rightLegStartX = bodyX + (bodyWidth / 2) * Math.cos(rightLegRadians);
+  const rightLegStartY = bodyY - (bodyHeight / 2) * Math.sin(rightLegRadians);
+  const rightLegEndX = rightLegStartX * 1.05;
+  const rightLegEndY = rightLegStartY * 1.25;
 
   return (
     <Layout>
-      <section className="flex flex-col justify-center">
+      <section ref={ref} className="flex flex-col justify-center">
+        <ReactRough height="250" width="100%" renderer="svg">
+          <Line id="noose" x1={beamCenterX} x2={beamCenterX} y1={nooseStartY} y2={nooseEndY} />
+          <Circle id="head" diameter={headRadius * 2} x={beamCenterX} y={nooseEndY + headRadius} />
+          <Ellipse id="body" height={bodyHeight} width={bodyWidth} x={beamCenterX} y={bodyY} />
+          <Line
+            id="leftArm"
+            x1={leftArmStartX}
+            x2={leftArmEndX}
+            y1={leftArmStartY}
+            y2={leftArmEndY}
+          />
+          <Line
+            id="rightArm"
+            x1={rightArmStartX}
+            x2={rightArmEndX}
+            y1={rightArmStartY}
+            y2={rightArmEndY}
+          />
+          <Line
+            id="leftLeg"
+            x1={leftLegStartX}
+            x2={leftLegEndX}
+            y1={leftLegStartY}
+            y2={leftLegEndY}
+          />
+          <Line
+            id="rightLeg"
+            x1={rightLegStartX}
+            x2={rightLegEndX}
+            y1={rightLegStartY}
+            y2={rightLegEndY}
+          />
+          <Rectangle
+            id="beam"
+            fill="black"
+            height={beamHeight}
+            width={beamWidth}
+            x={beamStartX}
+            y={beamY}
+          />
+          <Rectangle id="post" fill="black" height={220} width={10} x={beamStartX + 10} y={20} />
+          <Rectangle id="base" fill="black" height={10} width={beamWidth} x={beamStartX} y={230} />
+        </ReactRough>
         <button
           type="button"
           className={clsx({
