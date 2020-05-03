@@ -209,9 +209,9 @@ const Hangman = () => {
             type="button"
             className={clsx(
               {
-                invisible: state.value !== 'won' && state.value !== 'lost',
+                hidden: state.value !== 'won' && state.value !== 'lost',
               },
-              'inline bg-gray-300 hover:bg-gray-200 border-b-4 border-gray-500 mt-4 py-1 px-4 hover:border-gray-300 rounded'
+              'inline text-xs bg-gray-300 hover:bg-gray-200 border-b-4 border-gray-500 mt-4 mr-1 py-1 px-4 hover:border-gray-300 rounded'
             )}
             onClick={() => send({ type: 'RESET' })}
           >
@@ -227,27 +227,28 @@ const Hangman = () => {
             key={idx}
             className={clsx(
               { 'bg-gray-700 brand-text-color': letter.hasGuessed || state.value === 'lost' },
-              'rounded-full h-10 w-10  items-center justify-center border border-gray-700 my-1 mx-2 cursor-pointer'
+              'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1 cursor-pointer'
             )}
           >
             {letter.hasGuessed || state.value === 'lost' ? letter.value : '?'}
           </button>
         ))}
-      </section>
-      <section
-        className={clsx(
-          { hidden: state.value !== 'won' && state.value !== 'lost' },
-          'text-xs text-center pt-4'
-        )}
-      >
-        <a
-          target="BLANK"
-          href={`https://www.thefreedictionary.com/${state.context.word
-            .map(letter => letter.value)
-            .join('')}`}
-        >
-          Definition &#8599;
-        </a>
+        <div>
+          <a
+            target="BLANK"
+            href={`https://www.thefreedictionary.com/${state.context.word
+              .map(letter => letter.value)
+              .join('')}`}
+            className={clsx(
+              {
+                hidden: state.value !== 'won' && state.value !== 'lost',
+              },
+              'text-xs text-center pt-4'
+            )}
+          >
+            Definition &#8599;
+          </a>
+        </div>
       </section>
       <hr />
       <section className="max-w-sm mx-auto text-center">
