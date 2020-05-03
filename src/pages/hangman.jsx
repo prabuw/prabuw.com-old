@@ -4,6 +4,7 @@ import { Machine, assign } from 'xstate';
 import clsx from 'clsx';
 import ReactRough, { Rectangle, Line, Circle, Ellipse } from 'react-rough';
 import { Layout } from '../components/Layout';
+import words from '../../static/words.json';
 
 function buildAlphabet() {
   let start = 'A'.codePointAt(0);
@@ -84,7 +85,13 @@ const hangmanMachine = Machine(
       initialiseGame: assign({
         guessesLeft: () => 10,
         lettersGuessed: () => buildAlphabet(),
-        word: () => 'HELLO'.split('').map(letter => ({ value: letter, hasGuessed: false })),
+        word: () => {
+          const word = words[Math.floor(Math.random() * words.length)];
+          return word
+            .toUpperCase()
+            .split('')
+            .map(letter => ({ value: letter, hasGuessed: false }));
+        },
       }),
       applyGuess: assign((ctx, event) => ({
         guessesLeft: ctx.word.some(letter => letter.value === event.data.letter)
@@ -213,14 +220,14 @@ const Hangman = () => {
         </div>
       </section>
       <hr />
-      <section className="max-w-sm mx-auto text-center">
+      <section className="max-w-m mx-auto text-center">
         {state.context.word.map((letter, idx) => (
           <button
             type="button"
             key={idx}
             className={clsx(
               { 'bg-gray-700 brand-text-color': letter.hasGuessed || state.value === 'lost' },
-              'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1 cursor-pointer'
+              'rounded-full h-10 w-10  items-center justify-center border border-gray-700 my-1 mx-2 cursor-pointer'
             )}
           >
             {letter.hasGuessed || state.value === 'lost' ? letter.value : '?'}
