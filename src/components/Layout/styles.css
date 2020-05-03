@@ -1,5 +1,5 @@
 a.brand {
-  background: rgb(250, 240, 20);
+  background: var(--brand-color);
 }
 
 a.brand:hover {

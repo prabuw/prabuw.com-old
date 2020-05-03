@@ -162,6 +162,14 @@ p:not(:first-child) {
 
 /* Custom site styles */
 
+:root {
+  --brand-color: rgb(250, 240, 20);
+}
+
+.brand-text-color {
+  color: var(--brand-color);
+}
+
 html {
   @apply bg-white;
 }

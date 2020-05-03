@@ -204,7 +204,7 @@ const Hangman = () => {
               {
                 invisible: state.value !== 'won' && state.value !== 'lost',
               },
-              'inline bg-gray-500 hover:bg-gray-400 border-b-4 border-gray-700 mt-4 py-1 px-4 hover:border-gray-500 rounded'
+              'inline bg-gray-300 hover:bg-gray-200 border-b-4 border-gray-500 mt-4 py-1 px-4 hover:border-gray-300 rounded'
             )}
             onClick={() => send({ type: 'RESET' })}
           >
@@ -219,7 +219,7 @@ const Hangman = () => {
             type="button"
             key={idx}
             className={clsx(
-              { 'bg-gray-800 text-white': letter.hasGuessed || state.value === 'lost' },
+              { 'bg-gray-700 brand-text-color': letter.hasGuessed || state.value === 'lost' },
               'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1 cursor-pointer'
             )}
           >
@@ -234,9 +234,9 @@ const Hangman = () => {
             type="button"
             key={letter}
             className={clsx(
-              { 'bg-gray-500': state.value !== 'playing' },
-              { 'bg-gray-800 text-white': hasGuessed },
-              { 'hover:bg-gray-900 hover:text-gray-300': !hasGuessed && state.value === 'playing' },
+              { 'bg-gray-400': state.value !== 'playing' },
+              { 'bg-gray-700 text-gray-200': hasGuessed },
+              { 'hover:bg-gray-700 hover:text-gray-200': !hasGuessed && state.value === 'playing' },
               'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1'
             )}
             disabled={hasGuessed}
