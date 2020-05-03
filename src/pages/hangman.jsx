@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
-import { Machine, assign, actions } from 'xstate';
+import { Machine, assign } from 'xstate';
 import clsx from 'clsx';
 import { Layout } from '../components/Layout';
 
@@ -32,7 +32,7 @@ const hangmanMachine = Machine({
   states: {
     idle: {
       on: {
-        RESET: {
+        '': {
           target: 'playing',
           actions: assign({
             guessesLeft: () => 10,
@@ -85,18 +85,12 @@ const hangmanMachine = Machine({
     },
     lost: {
       on: {
-        RESET: {
-          target: 'idle',
-          actions: actions.raise('RESET'),
-        },
+        RESET: 'idle',
       },
     },
     won: {
       on: {
-        RESET: {
-          target: 'idle',
-          actions: actions.raise('RESET'),
-        },
+        RESET: 'idle',
       },
     },
   },
@@ -109,8 +103,14 @@ const Hangman = () => {
 
   return (
     <Layout>
-      <section className="flex justify-center">
-        <button type="button" onClick={() => send({ type: 'RESET' })}>
+      <section className="flex flex-col justify-center">
+        <button
+          type="button"
+          className={clsx({
+            hidden: state.value !== 'won' && state.value !== 'lost',
+          })}
+          onClick={() => send({ type: 'RESET' })}
+        >
           Start
         </button>
       </section>
