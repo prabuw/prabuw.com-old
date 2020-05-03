@@ -234,6 +234,21 @@ const Hangman = () => {
           </button>
         ))}
       </section>
+      <section
+        className={clsx(
+          { hidden: state.value !== 'won' && state.value !== 'lost' },
+          'text-xs text-center pt-4'
+        )}
+      >
+        <a
+          target="BLANK"
+          href={`https://www.thefreedictionary.com/${state.context.word
+            .map(letter => letter.value)
+            .join('')}`}
+        >
+          Definition &#8599;
+        </a>
+      </section>
       <hr />
       <section className="max-w-sm mx-auto text-center">
         {Object.entries(state.context.lettersGuessed).map(([letter, hasGuessed]) => (
