@@ -23,80 +23,91 @@ function degreesToRadians(degrees) {
   return (degrees * Math.PI) / 180;
 }
 
-const hangmanMachine = Machine({
-  id: 'hangman',
-  context: {
-    guessesLeft: 10,
-    lettersGuessed: buildAlphabet(),
-    word: [],
-  },
-  initial: 'idle',
-  states: {
-    idle: {
-      on: {
-        '': {
-          target: 'playing',
-          actions: assign({
-            guessesLeft: () => 10,
-            lettersGuessed: () => buildAlphabet(),
-            word: () => 'HELLO'.split('').map(letter => ({ value: letter, hasGuessed: false })),
-          }),
+const hangmanMachine = Machine(
+  {
+    id: 'hangman',
+    context: {
+      guessesLeft: 10,
+      lettersGuessed: buildAlphabet(),
+      word: [],
+    },
+    initial: 'start',
+    states: {
+      start: {
+        on: {
+          '': {
+            target: 'playing',
+            actions: 'initialiseGame',
+          },
+        },
+      },
+      playing: {
+        on: {
+          '': [
+            {
+              target: 'won',
+              cond: 'hasGuessedCorrectly',
+            },
+            {
+              target: 'lost',
+              cond: 'hasRunOutOfGuesses',
+            },
+          ],
+          GUESS: [
+            {
+              target: 'playing',
+              actions: 'applyGuess',
+              cond: 'hasNotRunOutOfGuesses',
+            },
+          ],
+        },
+      },
+      lost: {
+        on: {
+          RESET: 'start',
+        },
+      },
+      won: {
+        on: {
+          RESET: 'start',
         },
       },
     },
-    playing: {
-      on: {
-        '': [
-          {
-            target: 'won',
-            cond: ctx => ctx.word.every(letter => letter.hasGuessed),
-          },
-          {
-            target: 'lost',
-            cond: ctx => ctx.guessesLeft === 0,
-          },
-        ],
-        GUESS: [
-          {
-            target: 'playing',
-            actions: assign({
-              guessesLeft: (ctx, event) =>
-                ctx.word.some(letter => letter.value === event.data.letter)
-                  ? ctx.guessesLeft
-                  : ctx.guessesLeft - 1,
-              lettersGuessed: (ctx, event) => ({
-                ...ctx.lettersGuessed,
-                [event.data.letter]: true,
-              }),
-              word: (ctx, event) =>
-                ctx.word.map(letter => {
-                  if (letter.value !== event.data.letter) {
-                    return letter;
-                  }
-
-                  return {
-                    ...letter,
-                    hasGuessed: true,
-                  };
-                }),
-            }),
-            cond: ctx => ctx.guessesLeft > 0,
-          },
-        ],
-      },
-    },
-    lost: {
-      on: {
-        RESET: 'idle',
-      },
-    },
-    won: {
-      on: {
-        RESET: 'idle',
-      },
-    },
   },
-});
+  {
+    guards: {
+      hasGuessedCorrectly: ctx => ctx.word.every(letter => letter.hasGuessed),
+      hasRunOutOfGuesses: ctx => ctx.guessesLeft === 0,
+      hasNotRunOutOfGuesses: ctx => ctx.guessesLeft > 0,
+    },
+    actions: {
+      initialiseGame: assign({
+        guessesLeft: () => 10,
+        lettersGuessed: () => buildAlphabet(),
+        word: () => 'HELLO'.split('').map(letter => ({ value: letter, hasGuessed: false })),
+      }),
+      applyGuess: assign((ctx, event) => ({
+        guessesLeft: ctx.word.some(letter => letter.value === event.data.letter)
+          ? ctx.guessesLeft
+          : ctx.guessesLeft - 1,
+        lettersGuessed: {
+          ...ctx.lettersGuessed,
+          [event.data.letter]: true,
+        },
+        word: ctx.word.map(letter => {
+          if (letter.value !== event.data.letter) {
+            return letter;
+          }
+
+          return {
+            ...letter,
+            hasGuessed: true,
+          };
+        }),
+      })),
+    },
+  }
+);
 
 const Hangman = () => {
   const [state, send] = useMachine(hangmanMachine);
