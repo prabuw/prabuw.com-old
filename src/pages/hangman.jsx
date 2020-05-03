@@ -23,9 +23,6 @@ function degreesToRadians(degrees) {
   return (degrees * Math.PI) / 180;
 }
 
-//TODO: Tidy up machine
-//Move actions to common area
-
 const hangmanMachine = Machine({
   id: 'hangman',
   context: {
@@ -101,8 +98,6 @@ const hangmanMachine = Machine({
   },
 });
 
-//TODO: Fix colours
-
 const Hangman = () => {
   const [state, send] = useMachine(hangmanMachine);
   const [center, setCenter] = React.useState(0);
@@ -153,61 +148,58 @@ const Hangman = () => {
   const rightLegEndX = rightLegStartX * 1.05;
   const rightLegEndY = rightLegStartY * 1.25;
 
+  const parts = [
+    <Rectangle id="base" fill="black" height={10} width={beamWidth} x={beamStartX} y={230} />,
+    <Rectangle id="post" fill="black" height={220} width={10} x={beamStartX + 10} y={20} />,
+    <Rectangle
+      id="beam"
+      fill="black"
+      height={beamHeight}
+      width={beamWidth}
+      x={beamStartX}
+      y={beamY}
+    />,
+    <Line id="noose" x1={beamCenterX} x2={beamCenterX} y1={nooseStartY} y2={nooseEndY} />,
+    <Circle id="head" diameter={headRadius * 2} x={beamCenterX} y={nooseEndY + headRadius} />,
+    <Ellipse id="body" height={bodyHeight} width={bodyWidth} x={beamCenterX} y={bodyY} />,
+    <Line id="leftArm" x1={leftArmStartX} x2={leftArmEndX} y1={leftArmStartY} y2={leftArmEndY} />,
+    <Line
+      id="rightArm"
+      x1={rightArmStartX}
+      x2={rightArmEndX}
+      y1={rightArmStartY}
+      y2={rightArmEndY}
+    />,
+    <Line id="leftLeg" x1={leftLegStartX} x2={leftLegEndX} y1={leftLegStartY} y2={leftLegEndY} />,
+    <Line
+      id="rightLeg"
+      x1={rightLegStartX}
+      x2={rightLegEndX}
+      y1={rightLegStartY}
+      y2={rightLegEndY}
+    />,
+  ];
+
   return (
     <Layout>
       <section ref={ref} className="flex flex-col justify-center">
         <ReactRough height="250" width="100%" renderer="svg">
-          <Line id="noose" x1={beamCenterX} x2={beamCenterX} y1={nooseStartY} y2={nooseEndY} />
-          <Circle id="head" diameter={headRadius * 2} x={beamCenterX} y={nooseEndY + headRadius} />
-          <Ellipse id="body" height={bodyHeight} width={bodyWidth} x={beamCenterX} y={bodyY} />
-          <Line
-            id="leftArm"
-            x1={leftArmStartX}
-            x2={leftArmEndX}
-            y1={leftArmStartY}
-            y2={leftArmEndY}
-          />
-          <Line
-            id="rightArm"
-            x1={rightArmStartX}
-            x2={rightArmEndX}
-            y1={rightArmStartY}
-            y2={rightArmEndY}
-          />
-          <Line
-            id="leftLeg"
-            x1={leftLegStartX}
-            x2={leftLegEndX}
-            y1={leftLegStartY}
-            y2={leftLegEndY}
-          />
-          <Line
-            id="rightLeg"
-            x1={rightLegStartX}
-            x2={rightLegEndX}
-            y1={rightLegStartY}
-            y2={rightLegEndY}
-          />
-          <Rectangle
-            id="beam"
-            fill="black"
-            height={beamHeight}
-            width={beamWidth}
-            x={beamStartX}
-            y={beamY}
-          />
-          <Rectangle id="post" fill="black" height={220} width={10} x={beamStartX + 10} y={20} />
-          <Rectangle id="base" fill="black" height={10} width={beamWidth} x={beamStartX} y={230} />
+          {parts.slice(0, parts.length - state.context.guessesLeft).map(part => part)}
         </ReactRough>
-        <button
-          type="button"
-          className={clsx({
-            hidden: state.value !== 'won' && state.value !== 'lost',
-          })}
-          onClick={() => send({ type: 'RESET' })}
-        >
-          Start
-        </button>
+        <div className="text-center">
+          <button
+            type="button"
+            className={clsx(
+              {
+                invisible: state.value !== 'won' && state.value !== 'lost',
+              },
+              'inline bg-gray-500 hover:bg-gray-400 border-b-4 border-gray-700 mt-4 py-1 px-4 hover:border-gray-500 rounded'
+            )}
+            onClick={() => send({ type: 'RESET' })}
+          >
+            {state.value === 'won' ? 'Next' : 'Try Again?'}
+          </button>
+        </div>
       </section>
       <hr />
       <section className="max-w-sm mx-auto text-center">
@@ -216,7 +208,7 @@ const Hangman = () => {
             type="button"
             key={idx}
             className={clsx(
-              { 'bg-blue-500': letter.hasGuessed || state.value === 'lost' },
+              { 'bg-gray-800 text-white': letter.hasGuessed || state.value === 'lost' },
               'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1 cursor-pointer'
             )}
           >
@@ -232,8 +224,8 @@ const Hangman = () => {
             key={letter}
             className={clsx(
               { 'bg-gray-500': state.value !== 'playing' },
-              { 'bg-blue-500': hasGuessed },
-              { 'hover:bg-blue-800 hover:text-gray-300': !hasGuessed && state.value === 'playing' },
+              { 'bg-gray-800 text-white': hasGuessed },
+              { 'hover:bg-gray-900 hover:text-gray-300': !hasGuessed && state.value === 'playing' },
               'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1'
             )}
             disabled={hasGuessed}
