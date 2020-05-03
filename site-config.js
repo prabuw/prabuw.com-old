@@ -8,7 +8,7 @@ const config = {
   siteRss: '/rss.xml', // Path to the RSS file.
   siteRssTitle: "Prabu Weerasinghe's Blog", // Title of the RSS feed
   siteFBAppID: '1825356251115265', // FB Application ID for using app insights
-  googleAnalyticsID: 'UA-47311644-5', // GA tracking ID.
+  googleAnalyticsID: 'UA-50864319-1', // GA tracking ID.
   userEmail: 'prabu.weerasinghe@gmail.com', // Email used for RSS feed's author segment
   userTwitter: 'prabz', // Optionally renders "Follow Me" in the UserInfo segment.
   copyright: 'Copyright © 2020.', // Copyright string for the footer of the website and RSS feed.
