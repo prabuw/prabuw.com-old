@@ -166,8 +166,8 @@ p:not(:first-child) {
   --brand-color: rgb(250, 240, 20);
 }
 
-.brand-text-color {
-  color: var(--brand-color);
+.bg-brand {
+  background: var(--brand-color);
 }
 
 html {

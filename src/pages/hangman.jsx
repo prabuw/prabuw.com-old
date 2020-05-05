@@ -31,6 +31,7 @@ const hangmanMachine = Machine(
       guessesLeft: 10,
       lettersGuessed: buildAlphabet(),
       word: [],
+      streak: 0,
     },
     initial: 'start',
     states: {
@@ -63,14 +64,20 @@ const hangmanMachine = Machine(
           ],
         },
       },
-      lost: {
-        on: {
-          RESET: 'start',
-        },
-      },
       won: {
         on: {
-          RESET: 'start',
+          RESET: {
+            target: 'start',
+            actions: 'incrementStreak',
+          },
+        },
+      },
+      lost: {
+        on: {
+          RESET: {
+            target: 'start',
+            actions: 'resetStreak',
+          },
         },
       },
     },
@@ -111,6 +118,12 @@ const hangmanMachine = Machine(
             hasGuessed: true,
           };
         }),
+      })),
+      incrementStreak: assign((ctx, event) => ({
+        streak: ctx.streak + 1,
+      })),
+      resetStreak: assign(() => ({
+        streak: 0,
       })),
     },
   }
@@ -204,36 +217,24 @@ const Hangman = () => {
         <ReactRough height="250" width="100%" renderer="svg">
           {parts.slice(0, parts.length - state.context.guessesLeft).map(part => part)}
         </ReactRough>
-        <div className="text-center">
+        <div className="text-center mt-4">
+          <span
+            className={clsx({ hidden: state.value !== 'playing' }, 'text-sm bg-brand py-1 px-4')}
+          >
+            {`Streak: ${state.context.streak}`}
+          </span>
           <button
             type="button"
             className={clsx(
               {
                 hidden: state.value !== 'won' && state.value !== 'lost',
               },
-              'inline text-xs bg-gray-300 hover:bg-gray-200 border-b-4 border-gray-500 mt-4 mr-1 py-1 px-4 hover:border-gray-300 rounded'
+              'inline text-xs bg-gray-300 hover:bg-gray-200 border-b-4 border-gray-500 mr-1 py-1 px-4 hover:border-gray-300 rounded'
             )}
             onClick={() => send({ type: 'RESET' })}
           >
             {state.value === 'won' ? 'Next' : 'Try Again?'}
           </button>
-        </div>
-      </section>
-      <hr />
-      <section className="max-w-m mx-auto text-center">
-        {state.context.word.map((letter, idx) => (
-          <button
-            type="button"
-            key={idx}
-            className={clsx(
-              { 'bg-gray-700 brand-text-color': letter.hasGuessed || state.value === 'lost' },
-              'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1 cursor-pointer'
-            )}
-          >
-            {letter.hasGuessed || state.value === 'lost' ? letter.value : '?'}
-          </button>
-        ))}
-        <div>
           <a
             target="BLANK"
             href={`https://www.thefreedictionary.com/${state.context.word
@@ -243,12 +244,29 @@ const Hangman = () => {
               {
                 hidden: state.value !== 'won' && state.value !== 'lost',
               },
-              'text-xs text-center pt-4'
+              'text-xs text-center'
             )}
           >
             Definition &#8599;
           </a>
         </div>
+      </section>
+      <hr />
+      <section className="max-w-m mx-auto text-center">
+        {state.context.word.map((letter, idx) => (
+          <button
+            type="button"
+            key={idx}
+            className={clsx(
+              { 'bg-gray-700 text-gray-200': letter.hasGuessed },
+              { 'bg-gray-700 text-green-400': state.value === 'won' },
+              { 'bg-gray-700 text-red-400': state.value === 'lost' },
+              'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1'
+            )}
+          >
+            {letter.hasGuessed || state.value === 'lost' ? letter.value : '?'}
+          </button>
+        ))}
       </section>
       <hr />
       <section className="max-w-sm mx-auto text-center">
