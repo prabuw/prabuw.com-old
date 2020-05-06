@@ -218,37 +218,26 @@ const Hangman = () => {
           {parts.slice(0, parts.length - state.context.guessesLeft).map(part => part)}
         </ReactRough>
         <div className="text-center mt-4">
-          <span
-            className={clsx({ hidden: state.value !== 'playing' }, 'text-sm bg-brand py-1 px-4')}
+          <div
+            className={clsx(
+              { hidden: state.value !== 'playing' },
+              'inline-block text-sm bg-brand px-4 py-1 border-solid border-b-4 border-yellow-400'
+            )}
           >
             {`Streak: ${state.context.streak}`}
-          </span>
+          </div>
           <button
             type="button"
             className={clsx(
               {
                 hidden: state.value !== 'won' && state.value !== 'lost',
               },
-              'inline text-xs bg-gray-300 hover:bg-gray-200 border-b-4 border-gray-500 mr-1 py-1 px-4 hover:border-gray-300 rounded'
+              'inline-block text-sm bg-gray-300 border-solid border-b-4 border-gray-500 hover:bg-gray-200 hover:border-gray-300 px-4 py-1'
             )}
             onClick={() => send({ type: 'RESET' })}
           >
             {state.value === 'won' ? 'Next' : 'Try Again?'}
           </button>
-          <a
-            target="BLANK"
-            href={`https://www.thefreedictionary.com/${state.context.word
-              .map(letter => letter.value)
-              .join('')}`}
-            className={clsx(
-              {
-                hidden: state.value !== 'won' && state.value !== 'lost',
-              },
-              'text-xs text-center'
-            )}
-          >
-            Definition &#8599;
-          </a>
         </div>
       </section>
       <hr />
