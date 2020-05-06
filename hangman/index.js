@@ -8,7 +8,7 @@ function buildWordsForHangman() {
     const words = data
       .split(os.EOL)
       .map(word => word.replace('\r', ''))
-      .filter(word => word.length > 2);
+      .filter(word => word.length > 2 && word.length < 12);
 
     fs.writeFile('./static/words.json', JSON.stringify(words), writeErr => {
       if (writeErr) throw writeErr;
