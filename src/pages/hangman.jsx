@@ -174,6 +174,7 @@ const Hangman = () => {
               { 'bg-gray-700 text-red-400': state.value === 'lost' }
             )}
             hasLetterBeenGuessed={letter.hasBeenGuessed}
+            disabled
           >
             {letter.hasBeenGuessed || state.value === 'lost' ? letter.value : '?'}
           </LetterButton>
@@ -187,7 +188,7 @@ const Hangman = () => {
             className={clsx(
               { 'bg-gray-400': state.value !== 'playing' },
               {
-                'hover:bg-gray-700 hover:text-gray-200':
+                'hover:bg-gray-700 hover:text-gray-200 focus:bg-gray-200 focus:text-gray-700':
                   !hasBeenGuessed && state.value === 'playing',
               }
             )}
@@ -318,7 +319,7 @@ const LetterButton = ({ className, children, disabled, onClick, hasLetterBeenGue
       className={clsx(
         className,
         { 'bg-gray-700 text-gray-200': hasLetterBeenGuessed },
-        'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1'
+        'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1 focus:outline-none'
       )}
       disabled={disabled}
       onClick={onClick}
