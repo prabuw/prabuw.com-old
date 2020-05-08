@@ -119,7 +119,7 @@ const hangmanMachine = Machine(
           };
         }),
       })),
-      incrementStreak: assign((ctx, event) => ({
+      incrementStreak: assign(ctx => ({
         streak: ctx.streak + 1,
       })),
       resetStreak: assign(() => ({
