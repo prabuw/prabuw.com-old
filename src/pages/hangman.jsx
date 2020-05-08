@@ -84,7 +84,7 @@ const hangmanMachine = Machine(
   },
   {
     guards: {
-      hasGuessedCorrectly: ctx => ctx.word.every(letter => letter.hasGuessed),
+      hasGuessedCorrectly: ctx => ctx.word.every(letter => letter.hasBeenGuessed),
       haveRunOutOfGuesses: ctx => ctx.guessesLeft === 0,
       haveGuessesLeft: ctx => ctx.guessesLeft > 0,
     },
@@ -97,7 +97,7 @@ const hangmanMachine = Machine(
           return word
             .toUpperCase()
             .split('')
-            .map(letter => ({ value: letter, hasGuessed: false }));
+            .map(letter => ({ value: letter, hasBeenGuessed: false }));
         },
       }),
       applyGuess: assign((ctx, event) => ({
@@ -115,7 +115,7 @@ const hangmanMachine = Machine(
 
           return {
             ...letter,
-            hasGuessed: true,
+            hasBeenGuessed: true,
           };
         }),
       })),
@@ -173,24 +173,27 @@ const Hangman = () => {
               { 'bg-gray-700 text-green-400': state.value === 'won' },
               { 'bg-gray-700 text-red-400': state.value === 'lost' }
             )}
-            hasLetterBeenGuessed={letter.hasGuessed}
+            hasLetterBeenGuessed={letter.hasBeenGuessed}
           >
-            {letter.hasGuessed || state.value === 'lost' ? letter.value : '?'}
+            {letter.hasBeenGuessed || state.value === 'lost' ? letter.value : '?'}
           </LetterButton>
         ))}
       </section>
       <hr />
       <section className="max-w-sm mx-auto text-center">
-        {Object.entries(state.context.lettersGuessed).map(([letter, hasGuessed]) => (
+        {Object.entries(state.context.lettersGuessed).map(([letter, hasBeenGuessed]) => (
           <LetterButton
             key={letter}
             className={clsx(
               { 'bg-gray-400': state.value !== 'playing' },
-              { 'hover:bg-gray-700 hover:text-gray-200': !hasGuessed && state.value === 'playing' }
+              {
+                'hover:bg-gray-700 hover:text-gray-200':
+                  !hasBeenGuessed && state.value === 'playing',
+              }
             )}
-            disabled={hasGuessed}
+            disabled={hasBeenGuessed}
             onClick={() => send({ type: 'GUESS', data: { letter } })}
-            hasLetterBeenGuessed={hasGuessed}
+            hasLetterBeenGuessed={hasBeenGuessed}
           >
             {letter}
           </LetterButton>
