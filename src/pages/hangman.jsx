@@ -167,37 +167,33 @@ const Hangman = () => {
       <hr />
       <section className="max-w-m mx-auto text-center">
         {state.context.word.map((letter, idx) => (
-          <button
-            type="button"
+          <LetterButton
             key={idx}
             className={clsx(
-              { 'bg-gray-700 text-gray-200': letter.hasGuessed },
               { 'bg-gray-700 text-green-400': state.value === 'won' },
-              { 'bg-gray-700 text-red-400': state.value === 'lost' },
-              'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1'
+              { 'bg-gray-700 text-red-400': state.value === 'lost' }
             )}
+            hasLetterBeenGuessed={letter.hasGuessed}
           >
             {letter.hasGuessed || state.value === 'lost' ? letter.value : '?'}
-          </button>
+          </LetterButton>
         ))}
       </section>
       <hr />
       <section className="max-w-sm mx-auto text-center">
         {Object.entries(state.context.lettersGuessed).map(([letter, hasGuessed]) => (
-          <button
-            type="button"
+          <LetterButton
             key={letter}
             className={clsx(
               { 'bg-gray-400': state.value !== 'playing' },
-              { 'bg-gray-700 text-gray-200': hasGuessed },
-              { 'hover:bg-gray-700 hover:text-gray-200': !hasGuessed && state.value === 'playing' },
-              'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1'
+              { 'hover:bg-gray-700 hover:text-gray-200': !hasGuessed && state.value === 'playing' }
             )}
             disabled={hasGuessed}
             onClick={() => send({ type: 'GUESS', data: { letter } })}
+            hasLetterBeenGuessed={hasGuessed}
           >
             {letter}
-          </button>
+          </LetterButton>
         ))}
       </section>
     </Layout>
@@ -306,6 +302,23 @@ const Scene = ({ guessesLeft, stageWidth }) => {
     <ReactRough height="250" width="100%" renderer="svg">
       {parts.slice(0, parts.length - guessesLeft).map(part => part)}
     </ReactRough>
+  );
+};
+
+const LetterButton = ({ className, children, disabled, onClick, hasLetterBeenGuessed }) => {
+  return (
+    <button
+      type="button"
+      className={clsx(
+        className,
+        { 'bg-gray-700 text-gray-200': hasLetterBeenGuessed },
+        'rounded-full h-8 w-8 items-center justify-center border border-gray-700 my-1 mx-1'
+      )}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 };
 
