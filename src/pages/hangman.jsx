@@ -255,7 +255,8 @@ const Scene = ({ guessesLeft, stageWidth }) => {
   const rightLegEndX = rightLegStartX * 1.05;
   const rightLegEndY = rightLegStartY * 1.25;
 
-  const parts = [
+  /* Order here matters! */
+  const sceneParts = [
     <Rectangle
       id="bottomBeam"
       fill="black"
@@ -303,7 +304,9 @@ const Scene = ({ guessesLeft, stageWidth }) => {
 
   return (
     <ReactRough height="250" width="100%" renderer="svg">
-      {parts.slice(0, parts.length - guessesLeft).map(part => part)}
+      {sceneParts.slice(0, sceneParts.length - guessesLeft).map((part, idx) => (
+        <React.Fragment key={idx}>{part}</React.Fragment>
+      ))}
     </ReactRough>
   );
 };
