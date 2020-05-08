@@ -52,14 +52,14 @@ const hangmanMachine = Machine(
             },
             {
               target: 'lost',
-              cond: 'hasRunOutOfGuesses',
+              cond: 'haveRunOutOfGuesses',
             },
           ],
           GUESS: [
             {
               target: 'playing',
               actions: 'applyGuess',
-              cond: 'hasNotRunOutOfGuesses',
+              cond: 'haveGuessesLeft',
             },
           ],
         },
@@ -85,8 +85,8 @@ const hangmanMachine = Machine(
   {
     guards: {
       hasGuessedCorrectly: ctx => ctx.word.every(letter => letter.hasGuessed),
-      hasRunOutOfGuesses: ctx => ctx.guessesLeft === 0,
-      hasNotRunOutOfGuesses: ctx => ctx.guessesLeft > 0,
+      haveRunOutOfGuesses: ctx => ctx.guessesLeft === 0,
+      haveGuessesLeft: ctx => ctx.guessesLeft > 0,
     },
     actions: {
       initialiseGame: assign({
