@@ -19,10 +19,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     if (typeof frontmatter.slug !== 'undefined') {
       const slugPrefix = slugPrefixMap[frontmatter.template];
 
-      const slug =
-        slugPrefix != null
-          ? `/${slugPrefix}/${_.kebabCase(frontmatter.title)}`
-          : _.kebabCase(frontmatter.title);
+      const slug = slugPrefix != null ? `/${slugPrefix}/${frontmatter.slug}` : frontmatter.slug;
 
       createNodeField({
         node,
