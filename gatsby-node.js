@@ -2,7 +2,6 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const _ = require('lodash');
 const moment = require('moment');
-const buildWordsForHangman = require('./hangman');
 
 const formatDate = date => moment(date).format('MMMM DD, YYYY');
 
@@ -107,6 +106,4 @@ exports.createPages = async ({ graphql, actions }) => {
       context: { tag },
     });
   });
-
-  buildWordsForHangman();
 };
