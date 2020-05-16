@@ -18,24 +18,24 @@ h6 {
   @apply font-medium;
 }
 h1 {
-  @apply text-6xl;
-  @apply font-bold;
-}
-h2 {
   @apply text-4xl;
   @apply font-bold;
 }
-h3 {
+h2 {
   @apply text-3xl;
   @apply font-bold;
 }
-h4 {
+h3 {
   @apply text-2xl;
+  @apply font-bold;
+}
+h4 {
+  @apply text-xl;
   @apply font-medium;
 }
 h5,
 h6 {
-  @apply text-xl;
+  @apply text-lg;
   @apply font-medium;
 }
 
