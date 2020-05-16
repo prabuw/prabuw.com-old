@@ -94,10 +94,27 @@ h6 > a:hover {
   background-color: transparent !important;
 }
 
+p:not(:first-child) {
+  @apply mt-6;
+}
+
+p:not(:last-child) {
+  @apply mb-6;
+}
+
 ul,
 ol {
   @apply my-4;
-  @apply my-4;
+}
+
+li > p,
+li > p:not(:last-child) {
+  @apply my-0;
+}
+
+li > ul,
+li > ol {
+  @apply my-0;
 }
 
 ol li {
@@ -156,10 +173,6 @@ tt {
   font-feature-settings: 'ss02' 1, 'zero' 1;
 }
 
-p:not(:first-child) {
-  @apply mt-6;
-}
-
 /* Custom site styles */
 
 :root {
@@ -172,9 +185,11 @@ p:not(:first-child) {
 
 html {
   @apply bg-white;
+  @apply h-full;
 }
 
 body {
+  @apply h-full;
   @apply text-base;
   @apply text-black;
   font-family: 'Inter var', -system-ui, system-ui, sans-serif;
