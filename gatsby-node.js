@@ -6,7 +6,7 @@ const moment = require('moment');
 const formatDate = date => moment(date).format('MMMM DD, YYYY');
 
 const slugPrefixMap = {
-  post: 'blog',
+  post: 'writing',
   receipe: 'kitchen',
 };
 
