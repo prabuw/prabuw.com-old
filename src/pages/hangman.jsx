@@ -4,7 +4,6 @@ import { Machine, assign } from 'xstate';
 import clsx from 'clsx';
 import ReactRough, { Rectangle, Line, Circle, Ellipse } from 'react-rough';
 import { Layout } from '../components/Layout';
-import words from '../../static/words.json';
 
 function buildAlphabet() {
   let start = 'A'.codePointAt(0);
@@ -24,6 +23,16 @@ function degreesToRadians(degrees) {
   return (degrees * Math.PI) / 180;
 }
 
+let words = [];
+
+function fetchWords() {
+  return fetch('/words.json')
+    .then(response => response.json())
+    .then(response => {
+      words = response;
+    });
+}
+
 const hangmanMachine = Machine(
   {
     id: 'hangman',
@@ -33,8 +42,24 @@ const hangmanMachine = Machine(
       word: [],
       streak: 0,
     },
-    initial: 'start',
+    initial: 'loading',
     states: {
+      loading: {
+        invoke: {
+          src: () => fetchWords(),
+          onDone: {
+            target: 'start',
+          },
+          onError: {
+            target: 'failure',
+          },
+        },
+      },
+      failure: {
+        on: {
+          RETRY: 'loading',
+        },
+      },
       start: {
         on: {
           '': {
@@ -139,67 +164,73 @@ const Hangman = () => {
 
   return (
     <Layout>
-      <section ref={stage} className="flex flex-col justify-center">
-        <Scene guessesLeft={state.context.guessesLeft} stageWidth={stageWidth} />
-        <div className="text-center mt-4">
-          <div
-            className={clsx(
-              { hidden: state.value !== 'playing' },
-              'inline-block text-sm bg-brand px-4 py-1 border-solid border-b-4 border-yellow-400'
-            )}
-          >
-            {`Streak: ${state.context.streak}`}
-          </div>
-          <button
-            type="button"
-            className={clsx(
-              {
-                hidden: state.value !== 'won' && state.value !== 'lost',
-              },
-              'inline-block text-sm bg-gray-300 border-solid border-b-4 border-gray-500 hover:bg-gray-200 hover:border-gray-300 px-4 py-1'
-            )}
-            onClick={() => send({ type: 'RESET' })}
-          >
-            {state.value === 'won' ? 'Next' : 'Try Again?'}
-          </button>
-        </div>
-      </section>
-      <hr />
-      <section className="max-w-m mx-auto text-center">
-        {state.context.word.map((letter, idx) => (
-          <LetterButton
-            key={idx}
-            className={clsx(
-              { 'bg-gray-700 text-green-400': state.value === 'won' },
-              { 'bg-gray-700 text-red-400': state.value === 'lost' }
-            )}
-            hasLetterBeenGuessed={letter.hasBeenGuessed}
-            disabled
-          >
-            {letter.hasBeenGuessed || state.value === 'lost' ? letter.value : '?'}
-          </LetterButton>
-        ))}
-      </section>
-      <hr />
-      <section className="max-w-sm mx-auto text-center">
-        {Object.entries(state.context.lettersGuessed).map(([letter, hasBeenGuessed]) => (
-          <LetterButton
-            key={letter}
-            className={clsx(
-              { 'bg-gray-400': state.value !== 'playing' },
-              {
-                'hover:bg-gray-700 hover:text-gray-200 focus:bg-gray-200 focus:text-gray-700':
-                  !hasBeenGuessed && state.value === 'playing',
-              }
-            )}
-            disabled={hasBeenGuessed}
-            onClick={() => send({ type: 'GUESS', data: { letter } })}
-            hasLetterBeenGuessed={hasBeenGuessed}
-          >
-            {letter}
-          </LetterButton>
-        ))}
-      </section>
+      {state.value === 'loading' ? (
+        <></>
+      ) : (
+        <>
+          <section ref={stage} className="flex flex-col justify-center">
+            <Scene guessesLeft={state.context.guessesLeft} stageWidth={stageWidth} />
+            <div className="text-center mt-4">
+              <div
+                className={clsx(
+                  { hidden: state.value !== 'playing' },
+                  'inline-block text-sm bg-brand px-4 py-1 border-solid border-b-4 border-yellow-400'
+                )}
+              >
+                {`Streak: ${state.context.streak}`}
+              </div>
+              <button
+                type="button"
+                className={clsx(
+                  {
+                    hidden: state.value !== 'won' && state.value !== 'lost',
+                  },
+                  'inline-block text-sm bg-gray-300 border-solid border-b-4 border-gray-500 hover:bg-gray-200 hover:border-gray-300 px-4 py-1'
+                )}
+                onClick={() => send({ type: 'RESET' })}
+              >
+                {state.value === 'won' ? 'Next' : 'Try Again?'}
+              </button>
+            </div>
+          </section>
+          <hr />
+          <section className="max-w-m mx-auto text-center">
+            {state.context.word.map((letter, idx) => (
+              <LetterButton
+                key={idx}
+                className={clsx(
+                  { 'bg-gray-700 text-green-400': state.value === 'won' },
+                  { 'bg-gray-700 text-red-400': state.value === 'lost' }
+                )}
+                hasLetterBeenGuessed={letter.hasBeenGuessed}
+                disabled
+              >
+                {letter.hasBeenGuessed || state.value === 'lost' ? letter.value : '?'}
+              </LetterButton>
+            ))}
+          </section>
+          <hr />
+          <section className="max-w-sm mx-auto text-center">
+            {Object.entries(state.context.lettersGuessed).map(([letter, hasBeenGuessed]) => (
+              <LetterButton
+                key={letter}
+                className={clsx(
+                  { 'bg-gray-400': state.value !== 'playing' },
+                  {
+                    'hover:bg-gray-700 hover:text-gray-200 focus:bg-gray-200 focus:text-gray-700':
+                      !hasBeenGuessed && state.value === 'playing',
+                  }
+                )}
+                disabled={hasBeenGuessed}
+                onClick={() => send({ type: 'GUESS', data: { letter } })}
+                hasLetterBeenGuessed={hasBeenGuessed}
+              >
+                {letter}
+              </LetterButton>
+            ))}
+          </section>
+        </>
+      )}
     </Layout>
   );
 };
