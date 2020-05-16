@@ -164,17 +164,17 @@ const Hangman = () => {
 
   return (
     <Layout>
-      {state.value === 'loading' ? (
-        <></>
-      ) : (
+      {state.value === 'loading' ? null : (
         <>
-          <section ref={stage} className="flex flex-col justify-center">
+          <section ref={stage} className="flex flex-col sm:flex-row">
             <Scene guessesLeft={state.context.guessesLeft} stageWidth={stageWidth} />
-            <div className="text-center mt-4">
+            <div className="flex flex-row sm:flex-col justify-center sm:justify-start">
               <div
                 className={clsx(
-                  { hidden: state.value !== 'playing' },
-                  'inline-block text-sm bg-brand px-4 py-1 border-solid border-b-4 border-yellow-400'
+                  {
+                    hidden: state.value === 'won' || state.value === 'lost',
+                  },
+                  'sm:inline-block text-center text-sm bg-yellow-200 px-4 py-1 border-solid border-4 border-yellow-400 sm:mt-4'
                 )}
               >
                 {`Streak: ${state.context.streak}`}
@@ -185,7 +185,7 @@ const Hangman = () => {
                   {
                     hidden: state.value !== 'won' && state.value !== 'lost',
                   },
-                  'inline-block text-sm bg-gray-300 border-solid border-b-4 border-gray-500 hover:bg-gray-200 hover:border-gray-300 px-4 py-1'
+                  'inline-block text-sm bg-gray-300 border-solid border-b-4 border-gray-500 hover:bg-gray-200 hover:border-gray-300 mt-2 px-4 py-1 focus:outline-none'
                 )}
                 onClick={() => send({ type: 'RESET' })}
               >
@@ -198,10 +198,9 @@ const Hangman = () => {
             {state.context.word.map((letter, idx) => (
               <LetterButton
                 key={idx}
-                className={clsx(
-                  { 'bg-gray-700 text-green-400': state.value === 'won' },
-                  { 'bg-gray-700 text-red-400': state.value === 'lost' }
-                )}
+                className={clsx({
+                  'bg-gray-700 text-gray-200': state.value === 'won' || state.value === 'lost',
+                })}
                 hasLetterBeenGuessed={letter.hasBeenGuessed}
                 disabled
               >
@@ -335,11 +334,13 @@ const Scene = ({ guessesLeft, stageWidth }) => {
   ];
 
   return (
-    <ReactRough height="250" width="100%" renderer="svg">
-      {sceneParts.slice(0, sceneParts.length - guessesLeft).map((part, idx) => (
-        <React.Fragment key={idx}>{part}</React.Fragment>
-      ))}
-    </ReactRough>
+    <div className="w-full sm:w-4/5">
+      <ReactRough height="250" width="100%" renderer="svg">
+        {sceneParts.slice(0, sceneParts.length - guessesLeft).map((part, idx) => (
+          <React.Fragment key={idx}>{part}</React.Fragment>
+        ))}
+      </ReactRough>
+    </div>
   );
 };
 
