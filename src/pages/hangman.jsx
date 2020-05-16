@@ -90,18 +90,18 @@ const hangmanMachine = Machine(
         },
       },
       won: {
+        entry: ['incrementStreak'],
         on: {
           RESET: {
             target: 'start',
-            actions: 'incrementStreak',
           },
         },
       },
       lost: {
+        entry: ['resetStreak'],
         on: {
           RESET: {
             target: 'start',
-            actions: 'resetStreak',
           },
         },
       },
