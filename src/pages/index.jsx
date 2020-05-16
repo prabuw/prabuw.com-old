@@ -27,7 +27,7 @@ export default HomePage;
 export const pageQuery = graphql`
   query {
     allMarkdownRemark(
-      filter: { frontmatter: { template: { eq: "post" } } }
+      filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
