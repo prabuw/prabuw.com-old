@@ -8,6 +8,8 @@ import { Layout } from '../Layout';
 import { Seo } from '../SEO';
 import config from '../../../site-config';
 
+import './styles.css';
+
 export const Post = ({ postNode }) => {
   const [shouldShowTwitterIcon, setShouldShowTwitterIcon] = useState(false);
   const { frontmatter: post, fields } = postNode;
@@ -55,7 +57,7 @@ export const Post = ({ postNode }) => {
           {tag}
         </Link>
       ))}
-      <article className="mt-12" dangerouslySetInnerHTML={{ __html: postNode.html }} />
+      <article className="mt-12 post" dangerouslySetInnerHTML={{ __html: postNode.html }} />
     </Layout>
   );
 };
