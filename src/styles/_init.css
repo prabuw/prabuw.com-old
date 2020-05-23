@@ -228,5 +228,9 @@ body {
   overflow: initial;
 }
 
+:not(pre) > code {
+  padding: 0.1rem 0.4rem !important;
+}
+
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
