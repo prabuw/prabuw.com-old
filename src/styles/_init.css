@@ -133,6 +133,9 @@ blockquote {
   @apply font-serif;
   @apply text-lg;
   @apply my-4;
+  @apply border-l-4;
+  @apply border-solid;
+  @apply border-gray-800;
   color: #345;
   letter-spacing: 0.002em;
 }
@@ -164,6 +167,13 @@ thead tr {
 
 tbody tr:nth-child(odd) {
   @apply bg-gray-100;
+}
+
+pre,
+code {
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-feature-settings: 'ss02' 1, 'zero' 1;
+  @apply my-6;
 }
 
 /* Custom site styles */
@@ -202,6 +212,27 @@ body {
   -o-font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
   -webkit-font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
   font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
+}
+
+.gatsby-highlight {
+  background-color: #fdf6e3;
+  border-radius: 0.3em;
+  margin: 0.5em 0;
+  padding: 1em;
+  overflow: auto;
+}
+
+.gatsby-highlight pre[class*='language-'].line-numbers {
+  padding: 0;
+  padding-left: 2.8em;
+  overflow: initial;
+}
+
+.command-line-prompt > span:before {
+  color: #999;
+  content: ' ';
+  display: block;
+  padding-right: 0.8em;
 }
 
 @import 'tailwindcss/components';
