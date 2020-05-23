@@ -30,17 +30,18 @@ That is a lot of jargon! Let's try to simplify it.
 
 #### What is a finite state machine?
 
-A [finite state machine](https://en.wikipedia.org/wiki/Finite-state_machine) is officially defined as a [mathematical model](https://en.wikipedia.org/wiki/Finite-state_machine#Mathematical_model) of computation. In layman's terms, a finite state machine is way to formally describe the behaviour of a system. This is a broad definition, so let's try to narrow it down.
+A [finite state machine](https://en.wikipedia.org/wiki/Finite-state_machine) is officially defined as a [mathematical model](https://en.wikipedia.org/wiki/Finite-state_machine#Mathematical_model) of computation. A finite state machine is way to describe the behaviour of a system. This is a broad definition, so let's try to narrow it down.
 
 A finite state machine has the following properties:
 
 - There are a _finite_ number of states.
-- The machine starts in an initial state.
-- The machine can have finite number of final states.
-    - In a final state the system comes to a stop.
+- The state machine starts in an initial state.
+- The state machine can only be in _one_ state at any point of time.
+- The state machine can have finite number of final states.
+    - In a final state the state machine comes to a stop.
     - State machines can operate in a never-ending loop, where there aren't final states.
 - There are a finite number of _events_.
-    - An _event_ is input provided to the machine, which can trigger a _transition_ from the current state to the next.
+    - An _event_ is input provided to the state machine, which can trigger a _transition_ from the current state to the next.
 
 Let's look at an example of a finite state machine that models a basic traffic light.
 
@@ -52,14 +53,14 @@ Let's look at an example of a finite state machine that models a basic traffic l
     - The initial state is `red`
     - There are no final states in this example.
 - The events are `GO`, `SLOW.DOWN` and `STOP`.
-- To transition from one state to another, a valid event must be sent to for the current state.
+- To transition from one state to another, a valid event must be sent.
     - For example, if the state machine is in the `red` state. An event of type `GO` will trigger the transition to the `green` state. An event of type `STOP` will be ignored.
 
 A real traffic light is fare more complexed. It contains a lot more states and events.
 
 ##### So what?
 
-A system (or program) can be defined by its _variables_. In theory, the possible states of the system are function of the values of those variables. As an example, if a system has 3 _independent_ variables of boolean type (_true_ or _false_) then there are in 2<sup>3</sup> (8) unique states that the system can be in. Some of these states could be invalid from the perspective of the author of the system.
+A system (or program) can be defined by its _variables_. In theory, the possible states of the system are function of the different values of its variables. As an example, if a system has 3 _independent_ variables of boolean type (_true_ or _false_) then there are in 2<sup>3</sup> (8) unique states that the system can be in. Some of these states could be invalid from the perspective of the author of the system.
 
 Traditionally preventing a system from ending up in invalid states involves checking and manipulating the variables in the possible code paths. This can be error prone.
 Over time most systems increase in complexity. This results in an increase of states and code paths. This makes the system more susceptible to errors.
@@ -88,15 +89,15 @@ These features allow state machines to be more succint and prevent them from bec
 
 #### My findings on XState
 
-_XState_ is a robust state management library from my initial foray into using it. There is a non-trival learning curve to understanding state machines and statecharts on top of the library. It took me the better part of two weekends to get my head around it. The documentation is thorough and provides good examples.
+_XState_ is a robust state management library from my initial foray into using it. There is a learning curve to understanding state machines and statecharts on top of the library. The documentation is thorough and provides good examples, which helped me a lot.
 
 ##### Key takeaways from using XState
 
 - A state machine is represented as a JavaScript object.
-- States are represented as the property names of a JavaScript object.
-- For storing the extra state (XState refers to this as _extended state_) the library provides a property called [context](https://xstate.js.org/docs/guides/context.html) to hold the extended state within the state machine.
-    - I prefer to hold state that will be subject to change as a part of the transitions in the state machine. For example, I stored the state for `word`, `lettersGuessed` and `guessesLeft` in the context for the game.
-    - I prefer not to keep _extended state_ outside of the state machine because this introduces a task of keeping them in sync with the state machine. This can be a source of errors.
+- States are represented as the property names (strings) of a JavaScript object.
+- For storing any extra state (XState refers to this as _extended state_) the library provides a property called [context](https://xstate.js.org/docs/guides/context.html) to store it within the state machine.
+    - I prefer to only include state that will be changed as a part of the transitions in the state machine. This is to prevent the extended state from bloating. For example, I stored the state for `word`, `lettersGuessed` and `guessesLeft` in the context for the game.
+    - An alternative to `context` is to keep the extra state outside of the state machine. I am against this idea because it I like to keep state and the logic that changes it close together.
 - When transitioning between states, the library provides a mechanism called [actions](https://xstate.js.org/docs/guides/actions.html) to perform side-effects.
     - This is where a large part of the application behaviour lives.
     - This is where you can mutate the state machine's _extended state_. For example, I decremented the `guessesLeft` property when a guess was unsuccessful.
@@ -107,10 +108,9 @@ _XState_ is a robust state management library from my initial foray into using i
     - The event can optionally hold extra data. For example, the `GUESS` event holds the guessed letter.
     - The state machine will reject an event that is not valid for the current state.
     - A rejected event is logged to the developer tools in the browser but otherwise is transparent to the user.
-- XState provides a free [tool](https://xstate.js.org/viz) to visualise a state machine.
+- XState provides a [tool](https://xstate.js.org/viz) to visualise a state machine.
     - Visualising a state machine is helpful when modelling a system.
-    - You can store and embed the visualisation as I have done below.
-- XState provides a [react hook](https://xstate.js.org/docs/recipes/react.html#hooks) to integrate with a react application.
+- XState provides a [react hook](https://xstate.js.org/docs/recipes/react.html#hooks) to integrate with a react application. They also have integrations for other popular front-end ecosystems.
 
 The state machine from the [hangman game](/hangman):
 
@@ -128,6 +128,6 @@ For a more complex component or application, I believe this library can be usefu
 
 #### Extra resources for the inqusitive
 
-- [https://statecharts.github.io/](https://statecharts.github.io/) &mdash; a good guide about state machines and statecharts.
+- [https://statecharts.github.io](https://statecharts.github.io) &mdash; a comprehensive guide about state machines and statecharts.
 - [State of the Art User Interfaces with State Machines](https://www.youtube.com/watch?v=Ras7QG9kxUk) &mdash; a talk by David Khourshid about the value of state machines in user interfaces.
 
