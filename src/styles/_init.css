@@ -69,7 +69,7 @@ a[href^='#']:hover {
   text-decoration-style: dashed;
 }
 ::selection {
-  background: rgb(250, 240, 20);
+  background: var(--brand-color);
   text-shadow: none;
 }
 
@@ -164,13 +164,6 @@ thead tr {
 
 tbody tr:nth-child(odd) {
   @apply bg-gray-100;
-}
-
-pre,
-code,
-tt {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-feature-settings: 'ss02' 1, 'zero' 1;
 }
 
 /* Custom site styles */
