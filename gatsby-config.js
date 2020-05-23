@@ -49,7 +49,19 @@ module.exports = {
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-autolink-headers',
-          'gatsby-remark-prismjs',
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow',
+            },
+          },
         ],
       },
     },
@@ -159,20 +171,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-postcss',
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-external-links',
-            options: {
-              target: '_blank',
-              rel: 'nofollow',
-            },
-          },
-        ],
-      },
-    },
     {
       resolve: 'gatsby-plugin-netlify-cache',
       options: {

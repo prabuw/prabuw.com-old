@@ -116,6 +116,126 @@ The state machine from the [hangman game](/hangman):
 
 <iframe style="width:100%;height:335px;margin-bottom:2rem" src="https://xstate.js.org/viz/?gist=051656ac573ac527b7b48f53e1883d40&embed=1"></iframe>
 
+```javascript
+const hangmanMachine = Machine({
+    id: 'hangman',
+    context: {
+        guessesLeft: 10,
+        lettersGuessed: buildAlphabet(),
+        word: [],
+        streak: 0,
+    },
+    initial: 'loading',
+    states: {
+        loading: {
+            invoke: {
+                src: () => fetchWords(),
+                onDone: {
+                    target: 'start',
+                },
+                onError: {
+                    target: 'failure',
+                },
+            },
+        },
+        failure: {
+            on: {
+                RETRY: 'loading',
+            },
+        },
+        start: {
+            on: {
+                '': {
+                    target: 'playing',
+                    actions: 'initialiseGame',
+                },
+            },
+        },
+        playing: {
+            on: {
+                '': [{
+                        target: 'won',
+                        cond: 'hasGuessedCorrectly',
+                    },
+                    {
+                        target: 'lost',
+                        cond: 'haveRunOutOfGuesses',
+                    },
+                ],
+                GUESS: [{
+                    target: 'playing',
+                    actions: 'applyGuess',
+                    cond: 'haveGuessesLeft',
+                }, ],
+            },
+        },
+        won: {
+            entry: ['incrementStreak'],
+            on: {
+                RESET: {
+                    target: 'start',
+                },
+            },
+        },
+        lost: {
+            entry: ['resetStreak'],
+            on: {
+                RESET: {
+                    target: 'start',
+                },
+            },
+        },
+    },
+}, {
+    guards: {
+        hasGuessedCorrectly: ctx => ctx.word.every(letter => letter.hasBeenGuessed),
+        haveRunOutOfGuesses: ctx => ctx.guessesLeft === 0,
+        haveGuessesLeft: ctx => ctx.guessesLeft > 0,
+    },
+    actions: {
+        initialiseGame: assign({
+            guessesLeft: () => 10,
+            lettersGuessed: () => buildAlphabet(),
+            word: () => {
+                const word = words[Math.floor(Math.random() * words.length)];
+                return word
+                    .toUpperCase()
+                    .split('')
+                    .map(letter => ({
+                        value: letter,
+                        hasBeenGuessed: false
+                    }));
+            },
+        }),
+        applyGuess: assign((ctx, event) => ({
+            guessesLeft: ctx.word.some(letter => letter.value === event.data.letter) ?
+                ctx.guessesLeft :
+                ctx.guessesLeft - 1,
+            lettersGuessed: {
+                ...ctx.lettersGuessed,
+                [event.data.letter]: true,
+            },
+            word: ctx.word.map(letter => {
+                if (letter.value !== event.data.letter) {
+                    return letter;
+                }
+
+                return {
+                    ...letter,
+                    hasBeenGuessed: true,
+                };
+            }),
+        })),
+        incrementStreak: assign(ctx => ({
+            streak: ctx.streak + 1,
+        })),
+        resetStreak: assign(() => ({
+            streak: 0,
+        })),
+    },
+});
+```
+
 #### Conclusion
 
 My first attempt of the game used React's built in component state &mdash; [useState](https://reactjs.org/docs/hooks-state.html), which was more than adequate. There wasn't a need to involve a library such as XState but this was an exploration of the library and finite state machines.

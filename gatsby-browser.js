@@ -1,4 +1,3 @@
 require('./src/styles/_init.css');
-require('./src/styles/prism-material-light.css');
-
-exports.onClientEntry = () => {};
+require('prism-themes/themes/prism-atom-dark.css');
+require('prismjs/plugins/line-numbers/prism-line-numbers.css');
