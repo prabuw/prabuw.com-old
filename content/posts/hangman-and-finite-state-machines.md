@@ -114,7 +114,6 @@ _XState_ is a robust state management library from my initial foray into using i
 
 The state machine from the [hangman game](/hangman):
 
-<iframe style="width:100%;height:270px;margin-bottom:2rem" src="https://xstate.js.org/viz/?gist=051656ac573ac527b7b48f53e1883d40&embed=1"></iframe>
 <iframe style="width:100%;height:335px;margin-bottom:2rem" src="https://xstate.js.org/viz/?gist=051656ac573ac527b7b48f53e1883d40&embed=1"></iframe>
 
 #### Conclusion
