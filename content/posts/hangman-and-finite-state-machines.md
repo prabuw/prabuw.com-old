@@ -10,7 +10,7 @@ tags:
   - javascript
 ---
 
-Since the coronvirus panademic has gotten us all homebound ([#stayhome](https://twitter.com/hashtag/stayhome)), I thought I would take this opportunity to try out a library that had piqued my interest &mdash; [XState](https://xstate.js.org/docs/) by [@DavidKPiano](https://twitter.com/DavidKPiano).
+Since the Coronavirus panademic has us all homebound ([#stayhome](https://twitter.com/hashtag/stayhome)), I thought I would take this opportunity to try out a library that had piqued my interest &mdash; [XState](https://xstate.js.org/docs/) by [@DavidKPiano](https://twitter.com/DavidKPiano).
 
 I built a game of [hangman](/hangman) with it. For the curious, check out the [code](https://github.com/prabuw/prabuw.com/blob/master/src/pages/hangman.jsx).
 
@@ -18,7 +18,7 @@ I built a game of [hangman](/hangman) with it. For the curious, check out the [c
 
 During the last couple of years, I have worked on single page applications of different sizes. One common theme I have found is that managing state can get _complex_ and _messy_. This isn't a new revelation and has been heavily discussed within the community.
 
-Regardless of your ecosystem (React, Angular, Vue or <u>_insert your framework of choice here_</u>), there are a myriad of options for state managment. I believe this library provides a unique approach to managing state, but first we need to understand some of its concepts.
+Regardless of your ecosystem (React, Angular, Vue or <u>_insert your framework of choice here_</u>), there are a myriad of options for state management. I believe this library provides a unique approach to managing state, but first we need to understand some of its concepts.
 
 #### What is XState?
 
@@ -56,7 +56,7 @@ Let's look at an example of a finite state machine that models a basic traffic l
 - To transition from one state to another, a valid event must be sent.
     - For example, if the state machine is in the `red` state. An event of type `GO` will trigger the transition to the `green` state. An event of type `STOP` will be ignored.
 
-A real traffic light is fare more complexed. It contains a lot more states and events.
+A real traffic light is far more complexed. It contains a lot more states and events.
 
 ##### So what?
 
@@ -65,7 +65,7 @@ A system (or program) can be defined by its _variables_. In theory, the possible
 Traditionally preventing a system from ending up in invalid states involves checking and manipulating the variables in the possible code paths. This can be error prone.
 Over time most systems increase in complexity. This results in an increase of states and code paths. This makes the system more susceptible to errors.
 
-In contrast, a state machine models the system as a set of discrete states and predefined transitions. The states replace the combinations of the variable values. Except we define valid states and transitions only.
+In contrast, a state machine models the system as a set of discrete states and predefined transitions. The states replace the combinations of the variable values, except we only define valid states and transitions.
 
 #### Statecharts
 
@@ -83,7 +83,7 @@ Statecharts are an extension of state machines. Some of the key concepts they in
   - They prevent a transition unless a predefined condition is met.
   - This allows you to encode logic directly into the state machine.
 
-These features allow state machines to be more succint and prevent them from becoming unruley, also referred to as _state explosion_.
+These features allow state machines to be more succinct and prevent them from becoming unruly, also referred to as _state explosion_.
 
 ---
 
@@ -97,7 +97,7 @@ _XState_ is a robust state management library from my initial foray into using i
 - States are represented as the property names (strings) of a JavaScript object.
 - For storing any extra state (XState refers to this as _extended state_) the library provides a property called [context](https://xstate.js.org/docs/guides/context.html) to store it within the state machine.
     - I prefer to only include state that will be changed as a part of the transitions in the state machine. This is to prevent the extended state from bloating. For example, I stored the state for `word`, `lettersGuessed` and `guessesLeft` in the context for the game.
-    - An alternative to `context` is to keep the extra state outside of the state machine. I am against this idea because it I like to keep state and the logic that changes it close together.
+    - An alternative to `context` is to keep the extra state outside of the state machine. I am against this idea because I like to keep state and the logic that changes it close together.
 - When transitioning between states, the library provides a mechanism called [actions](https://xstate.js.org/docs/guides/actions.html) to perform side-effects.
     - This is where a large part of the application behaviour lives.
     - This is where you can mutate the state machine's _extended state_. For example, I decremented the `guessesLeft` property when a guess was unsuccessful.
@@ -242,7 +242,7 @@ My first attempt of the game used React's built in component state &mdash; [useS
 
 As I added more functionality I noticed verifying the game's functionality became more tedious. I know, I know, I should add some [tests](https://kentcdodds.com/blog/write-tests) at some point. I found using a state machine and also XState's visualiser helped me model the game with more confidence.
 
-For a more complex component or application, I believe this library can be useful along side other solutions to state management. It [isn't a silver bullet](http://worrydream.com/refs/Brooks-NoSilverBullet.pdf) for state management but it certainly will be a valuable tool in my toolbox.
+For a more complex component or application, I believe this library can be useful alongside other solutions to state management. It [isn't a silver bullet](http://worrydream.com/refs/Brooks-NoSilverBullet.pdf) for state management but it certainly will be a valuable tool in my toolbox.
 
 ---
 
