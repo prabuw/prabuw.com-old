@@ -112,7 +112,7 @@ _XState_ is a robust state management library from my initial foray into using i
     - Visualising a state machine is helpful when modelling a system.
 - XState provides a [react hook](https://xstate.js.org/docs/recipes/react.html#hooks) to integrate with a react application. They also have integrations for other popular front-end ecosystems.
 
-The state machine from the [hangman game](/hangman):
+The state machine from the <a href="/hangman" target="_blank">hangman game</a>:
 
 <iframe style="width:100%;height:335px;margin-bottom:2rem" src="https://xstate.js.org/viz/?gist=051656ac573ac527b7b48f53e1883d40&embed=1"></iframe>
 
