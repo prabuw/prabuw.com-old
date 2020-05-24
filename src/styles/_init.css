@@ -1,8 +1,15 @@
+/* purgecss start ignore */
+/*
+  'tailwindcss/base' and 'tailwindcss/components' must come after the above purgecss comment.
+  As per the [docs]](https://tailwindcss.com/docs/controlling-file-size/).
+*/
+
 /* Custom fonts */
 @import url('https://rsms.me/inter/inter.css');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
 @import 'tailwindcss/base';
+@import 'tailwindcss/components';
 
 /*
 ** Custom base styles
@@ -232,5 +239,6 @@ body {
   padding: 0.1rem 0.4rem !important;
 }
 
-@import 'tailwindcss/components';
+/* purgecss end ignore */
+
 @import 'tailwindcss/utilities';
