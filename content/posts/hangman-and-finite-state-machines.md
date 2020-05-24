@@ -12,7 +12,7 @@ tags:
 
 Since the Coronavirus panademic has us all homebound ([#stayhome](https://twitter.com/hashtag/stayhome)), I thought I would take this opportunity to try out a library that had piqued my interest &mdash; [XState](https://xstate.js.org/docs/) by [@DavidKPiano](https://twitter.com/DavidKPiano).
 
-I built a game of [hangman](/hangman) with it. For the curious, check out the [code](https://github.com/prabuw/prabuw.com/blob/master/src/pages/hangman.jsx).
+I built a game of <a href="/hangman" target="_blank">hangman</a> with it. For the curious, check out the [code](https://github.com/prabuw/prabuw.com/blob/master/src/pages/hangman.jsx).
 
 #### Why is this library interesting to me?
 
