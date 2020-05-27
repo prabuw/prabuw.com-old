@@ -5,18 +5,18 @@ import clsx from 'clsx';
 import ReactRough, { Rectangle, Line, Circle, Ellipse } from 'react-rough';
 import { Layout } from '../components/Layout';
 
-function buildAlphabet() {
+function buildLetterMap() {
   let start = 'A'.codePointAt(0);
   const end = 'Z'.codePointAt(0);
 
-  const alphabet = {};
+  const letterMap = {};
 
   while (start <= end) {
-    alphabet[String.fromCodePoint(start)] = false;
+    letterMap[String.fromCodePoint(start)] = false;
     start += 1;
   }
 
-  return alphabet;
+  return letterMap;
 }
 
 function degreesToRadians(degrees) {
@@ -38,7 +38,7 @@ const hangmanMachine = Machine(
     id: 'hangman',
     context: {
       guessesLeft: 10,
-      lettersGuessed: buildAlphabet(),
+      lettersGuessed: buildLetterMap(),
       word: [],
       streak: 0,
     },
@@ -116,7 +116,7 @@ const hangmanMachine = Machine(
     actions: {
       initialiseGame: assign({
         guessesLeft: () => 10,
-        lettersGuessed: () => buildAlphabet(),
+        lettersGuessed: () => buildLetterMap(),
         word: () => {
           const word = words[Math.floor(Math.random() * words.length)];
           return word
